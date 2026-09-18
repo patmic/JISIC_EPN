@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JISIC — Agenda 2026</title>
+<link rel="icon" href="./assets/img/jisic-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="site-nav__brand">
+    <img src="./assets/img/jisic-icon.svg" alt="JISIC">
+  </div>
+  <div class="topbar__nav">
+    <a href="./index.html" aria-current="page">Inicio</a>
+    <a href="./pages/nosotros.html">Nosotros</a>
+    <a href="./pages/servicios.html">Servicios</a>
+    <a href="./pages/contacto.html">Contacto</a>
+    <a href="./pages/auspiciantes.html">Auspiciantes</a>
+  </div>
+</nav>
+
+<section class="ascent" id="ascent">
+  <div class="ascent__sticky">
+    <canvas class="bloom" id="bloom"></canvas>
+
+    <!-- ============ CONTROLES ============ -->
+    <div class="topbar">
+      <form class="searchfield" id="agenda-form" role="search" autocomplete="off">
+        <svg class="searchfield__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2.1"/>
+          <path d="M16.3 16.3 21 21" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+        </svg>
+        <label class="sr-only" for="agenda-query" hidden>Buscar un evento</label>
+        <input class="searchfield__input" id="agenda-query" name="q" type="search"
+               placeholder="Buscar evento (ej. Neurociencia)…">
+        <button class="searchfield__submit" id="agenda-submit" type="submit" aria-label="Ir al evento">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.3"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+
+      <p class="topbar__hint" id="agenda-hint" aria-live="polite">—</p>
+    </div>
+
+    <div class="spine" id="spine" tabindex="0" role="slider"
+         aria-label="Línea de tiempo de eventos JISIC 2026"
+         aria-valuemin="1" aria-valuemax="365" aria-valuenow="1" aria-valuetext="">
+      <div class="spine__rail" id="spineRail">
+        <div class="spine__track"></div>
+        <div class="spine__fill" id="spineFill"></div>
+      </div>
+      <div class="halo" id="halo"></div>
+      <!-- Nodo viajero: icono JISIC centrado -->
+      <div class="node" id="node" aria-hidden="true">
+        <span class="node__grip"></span>
+        <img src="./assets/img/jisic-icon.svg" alt="">
+      </div>
+    </div>
+
+    <div class="scrim"></div>
+
+    <div class="stage" id="stage">
+      <div class="stage__head">
+        <p class="stage__eyebrow" id="eyebrow">—</p>
+        <span class="chip" id="when">—</span>
+      </div>
+      <h2 class="stage__title reveal" id="title"><span>—</span></h2>
+      <p class="stage__body reveal" id="body"><span>—</span></p>
+      <div class="meta" id="meta"></div>
+      <div class="counter" id="counter" role="status" aria-live="off"></div>
+      <p class="counter__label">Fecha en la línea</p>
+      <div class="ctl">
+        <button type="button" id="btnPrev"><span aria-hidden="true">⟰</span>Anterior</button>
+        <button type="button" id="btnToday" class="is-key">Hoy</button>
+        <button type="button" id="btnNext">Siguiente<span aria-hidden="true">⟱</span></button>
+      </div>
+    </div>
+
+    <div class="rail"><div class="rail__fill" id="railFill"></div></div>
+  </div>
+</section>
+
+<script src="./assets/js/main.js"></script>
+</body>
+</html>
