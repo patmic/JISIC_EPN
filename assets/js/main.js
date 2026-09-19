@@ -2,45 +2,62 @@
   "use strict";
 
   /* ======================================================================
-     SAMPLE DATA — replace with the real agenda.
+     XIII JISIC 2026 — datos reales tomados de jisic.epn.edu.ec
      Format: { date:"YYYY-MM-DD", type, title, venue, speaker, body }
      ====================================================================== */
   const YEAR = 2026;
+  const VENUE = "Teatro Politécnico, edificio 1 · Escuela Politécnica Nacional";
   const EVENTS = [
-    { date:"2026-01-22", type:"Coloquio", title:"Física cuántica aplicada",
-      venue:"Auditorio Central · Campus Norte", speaker:"Dra. Helena Vázquez",
-      body:"Apertura del año con los resultados del laboratorio de coherencia cuántica. Sesión de preguntas abierta al público general." },
-    { date:"2026-02-18", type:"Taller", title:"Datos abiertos en genómica",
-      venue:"Laboratorio B2 · Bloque de Biociencias", speaker:"Eq. Bioinformática",
-      body:"Taller práctico de tres horas sobre publicación de datasets genómicos reproducibles. Traer portátil con entorno preparado." },
-    { date:"2026-03-12", type:"Simposio", title:"Clima andino y criosfera",
-      venue:"Centro de Convenciones · Sala 1", speaker:"Panel interinstitucional",
-      body:"Estado del retroceso glaciar y su efecto sobre las cuencas altas. Se presentan las series de los últimos quince años." },
-    { date:"2026-04-09", type:"Jornada", title:"Robótica y control autónomo",
-      venue:"Pabellón de Ingeniería", speaker:"Dr. Marco Iturralde",
-      body:"Demostraciones en vivo de navegación autónoma en terreno irregular. Incluye visita guiada al banco de pruebas." },
-    { date:"2026-05-21", type:"Congreso", title:"Neurociencia computacional",
-      venue:"Auditorio Magno", speaker:"Comité científico",
-      body:"Dos días de ponencias sobre modelos de red a gran escala. Convocatoria de pósters abierta hasta el 30 de abril." },
-    { date:"2026-06-30", type:"Escuela", title:"Machine learning para ciencia",
-      venue:"Campus Sur · Aulas 3–5", speaker:"Dra. Noor Haddad",
-      body:"Escuela de verano de dos semanas sobre modelos sustitutos y cuantificación de incertidumbre. Cupos limitados." },
-    { date:"2026-08-14", type:"Divulgación", title:"Noche de observación",
-      venue:"Observatorio · Terraza norte", speaker:"Club de Astronomía",
-      body:"Observación del cielo de agosto con telescopios abiertos al público. Charla previa sobre fotometría amateur." },
-    { date:"2026-09-24", type:"Encuentro", title:"Materiales avanzados",
-      venue:"Sala de Grados", speaker:"Dr. Tobias Lindqvist",
-      body:"Encuentro sobre recubrimientos cerámicos de alta temperatura y su caracterización. Sesión conjunta con la industria." },
-    { date:"2026-10-16", type:"Foro", title:"Ética en inteligencia artificial",
-      venue:"Aula Magna", speaker:"Mesa redonda",
-      body:"Foro abierto sobre evaluación de riesgos en sistemas desplegados. Participan investigación, derecho y salud pública." },
-    { date:"2026-11-27", type:"Panel", title:"Energías renovables en red débil",
-      venue:"Sala de Consejo", speaker:"Ing. Paula Restrepo",
-      body:"Integración de generación intermitente en redes de baja inercia. Casos reales de los últimos tres despliegues." },
-    { date:"2026-12-11", type:"Cierre", title:"Resultados del año",
-      venue:"Auditorio Central", speaker:"Dirección de Investigación",
-      body:"Presentación de los resultados anuales y de la agenda preliminar del próximo año. Entrega de reconocimientos." }
+    { date:"2026-06-24", type:"Día 1 · Charlas magistrales", title:"Apertura: La IA transformando el mundo",
+      venue:VENUE, speaker:"Diego Apolo, Patricia Acosta, David Sperber, Henry Paz y más",
+      body:"Inauguración de las XIII Jornadas JISIC. Charlas sobre el talento que la IA no puede copiar, datos aplicados a la educación, ética y negocios, y el perfil del profesional del futuro. Cierra Carlos Rojas (Bizdata.chat) con \"Confesiones de un creador de agentes IA\"." },
+    { date:"2026-06-25", type:"Día 2 · Panel y reconocimiento", title:"Inteligencia Artificial con rostro humano",
+      venue:VENUE, speaker:"Sang Yoo, Ola Bini, Enrique Mafla, Santiago Lucano y más",
+      body:"Charlas sobre comunicación, branding, sociedad y quality engineering en la era de la IA, seguidas del panel \"Inteligencia Artificial con rostro humano: entre la innovación y la responsabilidad\" y la ceremonia de reconocimiento al comité organizador." },
+    { date:"2026-06-26", type:"Día 3 · Concurso y networking", title:"Concurso de IA, Networking y Premiación",
+      venue:VENUE, speaker:"Comité organizador JISIC",
+      body:"Cierre de las jornadas con el Concurso de Inteligencia Artificial (07:30–10:30), un espacio de networking entre asistentes y empresas (10:30–12:30) y la premiación final (12:30–13:30)." }
   ];
+
+  /* Menu pages, rendered as points at the start of the timeline (before ENE).
+     Each is placed PRELUDE_DAYS/5 apart on a virtual date range before Jan 1.
+     Contenido real tomado de jisic.epn.edu.ec (secciones Nosotros / Contacto). */
+  const PAGES = [
+    { id:"nosotros", title:"Nosotros",
+      body:"La Facultad de Ingeniería de Sistemas de la Escuela Politécnica Nacional organiza las XIII Jornadas JISIC 2026 como un espacio de encuentro entre la academia y la industria, donde estudiantes, docentes, graduados, investigadores, profesionales y empresas comparten experiencias, tendencias y soluciones tecnológicas vinculadas con la Inteligencia Artificial, la innovación y la transformación digital.",
+      meta:[
+        ["Coordinador","PhD. Andrés Larco"],
+        ["Comité directivo","PhD. Diana Yacchirema · MSc. Viviana Párraga · MSc. Marcela Saavedra"],
+        ["Comunicación","MSc. Gabriela García"],
+        ["Web master","MSc. Hernán Ordoñez"]
+      ] },
+    { id:"servicios", title:"Servicios",
+      body:"JISIC reúne conferencias magistrales, workshops técnicos con cupos limitados, un concurso de Inteligencia Artificial y un espacio de networking entre estudiantes, académicos y empresas. La entrada a las charlas y al concurso es gratuita.",
+      meta:[
+        ["Conferencias","Charlas magistrales con expertos de la academia y la industria"],
+        ["Workshops","Talleres prácticos con cupo limitado"],
+        ["Concurso de IA","Competencia abierta a estudiantes y participantes"],
+        ["Networking","Espacio de contacto entre asistentes y empresas"]
+      ] },
+    { id:"contacto", title:"Contacto",
+      body:"Escuela Politécnica Nacional · Campus \"José Rubén Orellana\", Edificio de Sistemas, segundo piso, Av. Ladrón de Guevara E253 y Andalucía, Quito, Ecuador.",
+      meta:[
+        ["Correo","jisic@epn.edu.ec"],
+        ["Contacto","Jairo Quishpe · Presidente AEIS"],
+        ["Dirección","Av. Ladrón de Guevara E253 y Andalucía, Quito"]
+      ] },
+    { id:"auspiciantes", title:"Auspiciantes",
+      body:"Esta edición la organizan la Facultad de Ingeniería de Sistemas (FIS) y la Escuela Politécnica Nacional (EPN). Los auspiciantes de la XIII edición se anunciarán próximamente.",
+      meta:[
+        ["Organiza","Facultad de Ingeniería de Sistemas — EPN"]
+      ] }
+  ];
+  const HOME = { id:"home", title:"XIII JISIC 2026",
+    body:"La IA transformando el mundo. Las Jornadas de Ingeniería de Sistemas Informáticos y de Computación son el espacio de encuentro entre la academia y la industria de la Facultad de Ingeniería de Sistemas (EPN). Arrastra el nodo, haz clic en un mes o en un rombo, o sigue el scroll para recorrer la agenda.",
+    meta:[
+      ["Fecha","24, 25 y 26 de junio de 2026"],
+      ["Sede",VENUE]
+    ] };
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -61,16 +78,24 @@
   const railFill = document.getElementById("railFill");
   const canvas   = document.getElementById("bloom");
   const ctx      = canvas.getContext("2d");
+  const neuro    = document.getElementById("neuro");
+  const nctx     = neuro.getContext("2d");
+  const SVGNS    = "http://www.w3.org/2000/svg";
 
-  /* ================== time scale ================== */
+  /* ================== time scale ==================
+     The timeline is extended backwards before Jan 1 to make room for the
+     menu pages (rendered as points at the start of the spine). EY0 is the
+     virtual start; real agenda dates still live between Y0 and Y1. */
   const DAY = 86400000;
+  const PRELUDE_DAYS = 120;
   const Y0  = Date.UTC(YEAR, 0, 1);
   const Y1  = Date.UTC(YEAR, 11, 31);
-  const SPAN = Y1 - Y0;
+  const EY0 = Y0 - PRELUDE_DAYS * DAY;
+  const SPAN = Y1 - EY0;
   const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
 
-  const fracOf = ms => clamp((ms - Y0) / SPAN, 0, 1);
-  const msOf   = f  => Y0 + Math.round(clamp(f, 0, 1) * SPAN / DAY) * DAY;
+  const fracOf = ms => clamp((ms - EY0) / SPAN, 0, 1);
+  const msOf   = f  => EY0 + Math.round(clamp(f, 0, 1) * SPAN / DAY) * DAY;
 
   const MN = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
   const MLONG = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto",
@@ -90,8 +115,18 @@
   const EV = EVENTS.map(e => {
     const [y,m,d] = e.date.split("-").map(Number);
     const ms = Date.UTC(y, m-1, d);
-    return Object.assign({}, e, { ms, f: fracOf(ms) });
+    return Object.assign({}, e, { kind:"event", ms, f: fracOf(ms) });
   }).sort((a,b) => a.ms - b.ms);
+
+  /* menu pages, spaced evenly through the prelude range */
+  const pageSpacing = PRELUDE_DAYS / (PAGES.length + 1);
+  const PAGE_ITEMS = PAGES.map((p, i) => {
+    const ms = EY0 + Math.round((i + 1) * pageSpacing) * DAY;
+    return Object.assign({}, p, { kind:"page", ms, f: fracOf(ms) });
+  });
+  const HOME_ITEM = Object.assign({}, HOME, { kind:"home", ms: EY0, f: 0 });
+
+  const ITEMS = [HOME_ITEM].concat(PAGE_ITEMS, EV).sort((a,b) => a.ms - b.ms);
 
   /* ================== spine: months, ticks, events ================== */
   const P0 = 0.06, P1 = 0.94;
@@ -126,6 +161,16 @@
     if (todayIn && e.ms < todayMs) el.classList.add("is-done");
     rail.appendChild(el);
     return el;
+  });
+
+  PAGE_ITEMS.forEach(p => {
+    const el = document.createElement("div");
+    el.className = "pagept";
+    el.style.top = (posOf(p.f) * 100) + "%";
+    el.innerHTML = '<span class="pagept__tip"></span>';
+    el.querySelector(".pagept__tip").textContent = p.title;
+    rail.appendChild(el);
+    p.el = el;
   });
 
   if (todayIn){
@@ -191,9 +236,9 @@
     currentStr = str;
   }
 
-  /* ================== event card ================== */
+  /* ================== stage card (events + menu pages) ================== */
   const NEAR_DAYS = 12;
-  let activeEv = -2;
+  let activeItem = undefined;
 
   function whenLabel(ms){
     if (!todayIn) return longStr(ms);
@@ -205,39 +250,95 @@
     return "Hace " + (-d) + " días";
   }
 
-  function nearestEv(f){
+  function nearestItem(f){
     let best = -1, bestD = Infinity;
-    for (let i = 0; i < EV.length; i++){
-      const d = Math.abs(EV[i].ms - msOf(f)) / DAY;
+    for (let i = 0; i < ITEMS.length; i++){
+      const d = Math.abs(ITEMS[i].ms - msOf(f)) / DAY;
       if (d < bestD){ bestD = d; best = i; }
     }
     return { i: best, days: bestD };
   }
 
-  function nextEvFrom(f){
+  function nextItemFrom(f){
     const ms = msOf(f);
-    for (let i = 0; i < EV.length; i++) if (EV[i].ms > ms + DAY) return i;
+    for (let i = 0; i < ITEMS.length; i++) if (ITEMS[i].ms > ms + DAY) return i;
     return -1;
   }
 
-  function setEvent(idx, cursorF){
-    if (idx === activeEv) return;
-    activeEv = idx;
+  /* pages/<id>/index.html is fetched and embedded in the stage; the JS
+     copy of the text is the fallback (e.g. when opened from file://). */
+  const pageBox = document.getElementById("pageBox");
+  const pageCache = {};
+  function embedPage(item){
+    stage.classList.remove("is-embed");
+    pageBox.hidden = true;
+    const show = entry => {
+      if (activeItem !== item) return;
+      pageBox.innerHTML = entry.html;
+      pageBox.dataset.base = entry.base;
+      pageBox.hidden = false;
+      stage.classList.add("is-embed");
+      Promise.all(entry.scripts.map(loadScript)).then(() => {
+        if (window.initCarousels) window.initCarousels(pageBox);
+      });
+    };
+    if (pageCache[item.id]) return show(pageCache[item.id]);
+    const url = new URL("./pages/" + item.id + "/index.html", location.href);
+    fetch(url)
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(t => {
+        const m = new DOMParser().parseFromString(t, "text/html").querySelector("main");
+        if (!m) return;
+        const scripts = [].map.call(m.querySelectorAll("script[src]"), s => new URL(s.getAttribute("src"), url).href);
+        pageCache[item.id] = { html: m.innerHTML, scripts, base: url.href };
+        show(pageCache[item.id]);
+      })
+      .catch(() => {});
+  }
 
-    if (idx < 0){
-      const nx = nextEvFrom(cursorF);
+  const scriptLoads = {};
+  function loadScript(src){
+    return scriptLoads[src] || (scriptLoads[src] = new Promise(res => {
+      const s = document.createElement("script");
+      s.src = src; s.onload = s.onerror = res;
+      document.head.appendChild(s);
+    }));
+  }
+
+  function setNavCurrent(id){
+    navLinks.forEach(a => {
+      if (a.dataset.target === id) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+  }
+
+  function setItem(idx, cursorF){
+    const item = idx >= 0 ? ITEMS[idx] : null;
+    if (item === activeItem) return;
+    activeItem = item;
+
+    if (!item){
+      const nx = nextItemFrom(cursorF);
+      const nxItem = nx >= 0 ? ITEMS[nx] : null;
       stage.classList.add("is-idle");
+      stage.classList.remove("is-page");
       eyebrow.textContent = "Sin eventos";
-      whenEl.textContent = nx >= 0 ? "Próximo: " + flapStr(EV[nx].ms) : "Fin del año";
+      whenEl.textContent = nxItem
+        ? (nxItem.kind === "event" ? "Próximo: " + flapStr(nxItem.ms) : "Próximo: " + nxItem.title)
+        : "Fin del año";
       whenEl.classList.remove("is-soon");
-      titleEl.innerHTML = "<span>" + (nx >= 0 ? EV[nx].title : "Año completado") + "</span>";
-      bodyEl.innerHTML  = "<span>" + (nx >= 0
-        ? "Arrastra el nodo hasta el rombo de " + longStr(EV[nx].ms) + " para abrir la ficha."
+      titleEl.innerHTML = "<span>" + (nxItem ? nxItem.title : "Año completado") + "</span>";
+      bodyEl.innerHTML  = "<span>" + (nxItem
+        ? (nxItem.kind === "event"
+            ? "Arrastra el nodo hasta el rombo de " + longStr(nxItem.ms) + " para abrir la ficha."
+            : "Sigue arrastrando el nodo hasta el punto de " + nxItem.title + ".")
         : "No quedan eventos programados en " + YEAR + ".") + "</span>";
       metaEl.innerHTML = "";
-    } else {
-      const e = EV[idx];
+      setNavCurrent(null);
+    } else if (item.kind === "event"){
+      const e = item;
       stage.classList.remove("is-idle");
+      stage.classList.remove("is-page");
       eyebrow.textContent = e.type + " · " + flapStr(e.ms);
       whenEl.textContent = whenLabel(e.ms);
       whenEl.classList.toggle("is-soon", todayIn && e.ms >= todayMs && (e.ms - todayMs) / DAY <= 30);
@@ -247,9 +348,27 @@
         '<div><span>Sede</span><b>' + e.venue + '</b></div>' +
         '<div><span>Responsable</span><b>' + e.speaker + '</b></div>' +
         '<div><span>Fecha</span><b>' + longStr(e.ms) + '</b></div>';
+      setNavCurrent("evento");
+      brainBurst();
+    } else {
+      stage.classList.remove("is-idle");
+      stage.classList.add("is-page");
+      eyebrow.textContent = item.kind === "home" ? "Inicio" : "Página · " + item.title;
+      whenEl.textContent = "";
+      whenEl.classList.remove("is-soon");
+      titleEl.innerHTML = "<span>" + item.title + "</span>";
+      bodyEl.innerHTML  = "<span>" + item.body + "</span>";
+      metaEl.innerHTML = (item.meta || []).map(function(kv){
+        return '<div><span>' + kv[0] + '</span><b>' + kv[1] + '</b></div>';
+      }).join("");
+      setNavCurrent(item.id);
+      if (item.kind === "page") embedPage(item);
     }
+    if (item && item.kind !== "page"){ stage.classList.remove("is-embed"); pageBox.hidden = true; }
 
-    evEls.forEach((el, i) => el.classList.toggle("is-active", i === idx));
+    const idOf = i => (i >= 0 ? ITEMS[i] : null);
+    evEls.forEach((el, i) => el.classList.toggle("is-active", idOf(idx) === EV[i]));
+    PAGE_ITEMS.forEach(p => p.el.classList.toggle("is-active", idOf(idx) === p));
 
     if (!reduce){
       titleEl.classList.remove("swap-in"); bodyEl.classList.remove("swap-in");
@@ -260,11 +379,12 @@
 
   /* ================== canvas: pixel bloom background ================== */
   const STEPS = 40;
-  const PAL_LIME = [], PAL_CREST = [];
+  const PAL_LIME = [], PAL_CREST = [], PAL_WARM = [];
   for (let i = 0; i <= STEPS; i++){
     const a = (i / STEPS).toFixed(3);
     PAL_LIME.push("rgba(157,255,50," + a + ")");
     PAL_CREST.push("rgba(226,255,190," + a + ")");
+    PAL_WARM.push("rgba(232,255,198," + a + ")");
   }
   const pick = (pal, a) => pal[clamp(Math.round(a * STEPS), 0, STEPS)];
 
@@ -318,6 +438,343 @@
     }
   }
 
+  /* ================== canvas: neural brain (right side) ================== */
+  const BRAIN_D = "M104,14 C132,8 160,18 174,40 C188,62 190,76 184,88 " +
+                  "C179,98 170,101 163,103 C171,112 167,124 153,128 " +
+                  "C143,131 135,128 129,133 C119,141 104,143 93,137 " +
+                  "C86,133 79,136 72,139 C74,148 71,155 63,160 " +
+                  "C55,158 56,149 55,141 C46,138 38,131 34,119 " +
+                  "C30,110 30,102 26,94 C17,78 14,56 26,40 " +
+                  "C38,24 56,14 74,12 C84,11 95,12 104,14 Z";
+
+  const FOLD_D = [
+    "M58,36 C80,32 94,46 86,60 C80,72 94,80 110,74 C124,69 132,78 130,90",
+    "M150,32 C142,48 154,56 148,68 C142,80 124,78 120,90 C117,99 122,108 132,110",
+    "M34,64 C52,62 60,72 56,84 C52,96 64,102 80,100 C94,98 100,106 98,118",
+    "M96,22 C108,34 104,48 116,52 C130,57 136,44 150,48 C162,51 166,62 162,72",
+    "M70,110 C86,108 96,118 112,114 C126,111 134,118 138,126",
+    "M44,98 C56,110 48,120 62,126 C72,130 78,128 86,132"
+  ];
+
+  let nNodes = [], nEdges = [], nAdj = [], nPulses = [];
+  let foldGeom = [], silhouette = [];
+  let brainBox = {cx:0, cy:0, s:1};
+  let neuroT0 = 0, wasVisible = false;
+
+  const svgHost = document.createElementNS(SVGNS, "svg");
+  svgHost.setAttribute("width", "0");
+  svgHost.setAttribute("height", "0");
+  svgHost.style.cssText = "position:absolute;left:-9999px;top:0;width:0;height:0;overflow:hidden";
+  document.body.appendChild(svgHost);
+
+  function samplePath(d, step){
+    const p = document.createElementNS(SVGNS, "path");
+    p.setAttribute("d", d);
+    svgHost.appendChild(p);
+    const L = p.getTotalLength();
+    const out = [];
+    for (let l = 0; l <= L; l += step){
+      const pt = p.getPointAtLength(l);
+      out.push({x: pt.x, y: pt.y});
+    }
+    svgHost.removeChild(p);
+    return out;
+  }
+
+  const hitCv  = document.createElement("canvas");
+  hitCv.width = 200; hitCv.height = 170;
+  const hitCtx = hitCv.getContext("2d");
+  const brainPath = new Path2D(BRAIN_D);
+  const insideBrain = (x, y) => hitCtx.isPointInPath(brainPath, x, y);
+
+  function brainBurst(){
+    if (reduce || !nNodes.length) return;
+    for (let i = 0; i < 22; i++){
+      const n = nNodes[(Math.random() * nNodes.length) | 0];
+      if (n) n.flash = 1;
+    }
+  }
+
+  function buildBrain(){
+    const outline = samplePath(BRAIN_D, 6.0);
+    const pts = outline.map(p => ({x:p.x, y:p.y, edge:true}));
+
+    const MIN_IN = 7.6, MIN_EDGE = 6.2;
+    let tries = 0;
+    while (tries < 9000 && pts.length < 320){
+      tries++;
+      const x = 10 + Math.random() * 184;
+      const y = 6  + Math.random() * 160;
+      if (!insideBrain(x, y)) continue;
+      let ok = true;
+      for (let i = 0; i < pts.length; i++){
+        const dx = pts[i].x - x, dy = pts[i].y - y;
+        const m = pts[i].edge ? MIN_EDGE : MIN_IN;
+        if (dx*dx + dy*dy < m*m){ ok = false; break; }
+      }
+      if (ok) pts.push({x, y, edge:false});
+    }
+
+    nNodes = pts.map((p) => {
+      const ang = Math.random() * Math.PI * 2;
+      const rad = 70 + Math.random() * 190;
+      const dCenter = Math.hypot(p.x - 100, p.y - 86) / 110;
+      return {
+        x:p.x, y:p.y,
+        sx:p.x + Math.cos(ang) * rad,
+        sy:p.y + Math.sin(ang) * rad * 0.72,
+        cx:0, cy:0, form:0,
+        edge:p.edge,
+        ph: Math.random() * Math.PI * 2,
+        sp: 0.5 + Math.random() * 1.3,
+        delay: dCenter * 0.9 + Math.random() * 0.55,
+        flash: 0
+      };
+    });
+
+    const R = 17.5;
+    nEdges = [];
+    nAdj = nNodes.map(() => []);
+    const seen = new Set();
+    for (let i = 0; i < nNodes.length; i++){
+      const near = [];
+      for (let j = 0; j < nNodes.length; j++){
+        if (i === j) continue;
+        const dx = nNodes[j].x - nNodes[i].x, dy = nNodes[j].y - nNodes[i].y;
+        const d2 = dx*dx + dy*dy;
+        if (d2 < R*R) near.push({j, d: Math.sqrt(d2)});
+      }
+      near.sort((a,b) => a.d - b.d);
+      for (let k = 0; k < Math.min(near.length, 3); k++){
+        const j = near[k].j;
+        const key = i < j ? i + "_" + j : j + "_" + i;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        nEdges.push({a:i, b:j, len:near[k].d, delay: Math.random() * 1.5});
+        nAdj[i].push(nEdges.length - 1);
+        nAdj[j].push(nEdges.length - 1);
+      }
+    }
+
+    const count = Math.max(10, Math.min(34, Math.round(nEdges.length / 17)));
+    nPulses = [];
+    for (let i = 0; i < count; i++){
+      nPulses.push({
+        e: (Math.random() * nEdges.length) | 0,
+        dir: Math.random() < .5 ? 1 : 0,
+        t: Math.random(),
+        sp: 0.55 + Math.random() * 0.75
+      });
+    }
+
+    foldGeom = FOLD_D.map(d => samplePath(d, 2.6));
+    silhouette = samplePath(BRAIN_D, 1.4);
+  }
+
+  function placeBrain(){
+    const w = neuro.clientWidth, h = neuro.clientHeight;
+    neuro.width  = Math.floor(w * dpr);
+    neuro.height = Math.floor(h * dpr);
+    nctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const small = w < 820;
+    const s = small
+      ? Math.min((w * 0.68) / 200, (h * 0.34) / 170)
+      : Math.min((w * 0.44) / 200, (h * 0.82) / 170);
+    brainBox = {
+      cx: small ? w * 0.65 : w * 0.72,
+      cy: small ? h * 0.27 : h * 0.50,
+      s
+    };
+  }
+
+  const eOutCubic = t => 1 - Math.pow(1 - t, 3);
+  const eOutBack  = t => { const c = 1.24; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+
+  function drawNeuro(time){
+    const w = neuro.clientWidth, h = neuro.clientHeight;
+    nctx.clearRect(0, 0, w, h);
+    if (!nNodes.length) return;
+
+    if (!neuroT0) neuroT0 = time;
+    const T = reduce ? 99 : (time - neuroT0) / 1000;
+    const t = time / 1000;
+
+    const fade = clamp(T / 1.1, 0, 1);
+    const { cx, cy } = brainBox;
+    const breathe = reduce ? 1 : (1 + 0.013 * Math.sin(t * 0.62));
+    const s = brainBox.s * breathe;
+    const rot = reduce ? 0 : Math.sin(t * 0.21) * 0.022;
+    const rad = 200 * s * 0.66;
+
+    nctx.save();
+    nctx.translate(cx, cy);
+    nctx.scale(1, 0.92);
+    const g = nctx.createRadialGradient(0, 0, 0, 0, 0, rad);
+    g.addColorStop(0,   "rgba(7,8,7,.92)");
+    g.addColorStop(.46, "rgba(7,8,7,.80)");
+    g.addColorStop(.78, "rgba(7,8,7,.34)");
+    g.addColorStop(1,   "rgba(7,8,7,0)");
+    nctx.globalAlpha = fade;
+    nctx.fillStyle = g;
+    nctx.beginPath();
+    nctx.arc(0, 0, rad, 0, Math.PI * 2);
+    nctx.fill();
+
+    const aura = clamp((T - 2.4) / 2.2, 0, 1) * (0.55 + 0.45 * Math.sin(t * 0.8));
+    if (aura > 0.01){
+      const ga = nctx.createRadialGradient(0, 0, rad * 0.1, 0, 0, rad * 0.92);
+      ga.addColorStop(0, "rgba(157,255,50," + (0.13 * aura) + ")");
+      ga.addColorStop(1, "rgba(157,255,50,0)");
+      nctx.fillStyle = ga;
+      nctx.beginPath();
+      nctx.arc(0, 0, rad * 0.92, 0, Math.PI * 2);
+      nctx.fill();
+    }
+    nctx.restore();
+    nctx.globalAlpha = 1;
+
+    nctx.save();
+    nctx.translate(cx, cy);
+    nctx.rotate(rot);
+    nctx.scale(s, s);
+    nctx.translate(-100, -86);
+    const U = 1 / s;
+
+    const scanCycle = 7.5, scanStart = 4.6;
+    const scanT = T > scanStart ? ((T - scanStart) % scanCycle) / 1.7 : -1;
+    const scanX = scanT >= 0 && scanT <= 1 ? 10 + scanT * 186 : -999;
+
+    for (let i = 0; i < nNodes.length; i++){
+      const n = nNodes[i];
+      const p = clamp((T - n.delay) / 2.0, 0, 1);
+      const k = reduce ? 1 : eOutBack(p);
+      const jx = reduce ? 0 : Math.sin(t * n.sp + n.ph) * 0.45;
+      const jy = reduce ? 0 : Math.cos(t * n.sp * 0.8 + n.ph) * 0.45;
+      n.cx = n.sx + (n.x - n.sx) * k + jx * p;
+      n.cy = n.sy + (n.y - n.sy) * k + jy * p;
+      n.form = p;
+      if (scanX > -900){
+        const d = Math.abs(n.cx - scanX);
+        if (d < 5) n.flash = Math.max(n.flash, 0.85 * (1 - d / 5));
+      }
+      n.flash *= reduce ? 0 : 0.955;
+    }
+
+    const foldA = clamp((T - 3.0) / 1.8, 0, 1) * 0.5 * fade;
+    if (foldA > 0.01){
+      nctx.strokeStyle = "rgba(157,255,50," + foldA + ")";
+      nctx.lineWidth = 0.9 * U;
+      nctx.lineCap = "round";
+      nctx.setLineDash([2.4 * U, 4.6 * U]);
+      nctx.lineDashOffset = reduce ? 0 : -t * 7 * U;
+      for (let f = 0; f < foldGeom.length; f++){
+        const pts = foldGeom[f];
+        nctx.beginPath();
+        nctx.moveTo(pts[0].x, pts[0].y);
+        for (let i = 1; i < pts.length; i++) nctx.lineTo(pts[i].x, pts[i].y);
+        nctx.stroke();
+      }
+      nctx.setLineDash([]);
+    }
+
+    if (silhouette.length){
+      const tr = reduce ? 1 : clamp((T - 0.25) / 2.3, 0, 1);
+      const n  = Math.max(2, Math.round(eOutCubic(tr) * silhouette.length));
+      const hold = clamp((T - 2.9) / 1.4, 0, 1);
+      const a = fade * (tr < 1 ? 0.75 : 0.30 + 0.12 * Math.sin(t * 0.9)) * (tr < 1 ? 1 : 0.55 + 0.45 * hold);
+      nctx.strokeStyle = "rgba(196,255,128," + a.toFixed(3) + ")";
+      nctx.lineWidth = 1.05 * U;
+      nctx.lineJoin = "round";
+      nctx.beginPath();
+      nctx.moveTo(silhouette[0].x, silhouette[0].y);
+      for (let i = 1; i < n; i++) nctx.lineTo(silhouette[i].x, silhouette[i].y);
+      nctx.stroke();
+      if (tr < 1){
+        const hd = silhouette[n - 1];
+        nctx.fillStyle = "rgba(240,255,215," + fade.toFixed(3) + ")";
+        nctx.fillRect(hd.x - 1.6 * U, hd.y - 1.6 * U, 3.2 * U, 3.2 * U);
+      }
+    }
+
+    nctx.lineWidth = 0.85 * U;
+    for (let i = 0; i < nEdges.length; i++){
+      const e = nEdges[i];
+      const A = nNodes[e.a], B = nNodes[e.b];
+      const ea = clamp((T - 1.7 - e.delay) / 1.3, 0, 1) * Math.min(A.form, B.form);
+      if (ea < 0.02) continue;
+      const near = 1 - Math.min(e.len / 17.5, 1);
+      const live = Math.max(A.flash, B.flash);
+      const a = fade * ea * (0.17 + near * 0.26 + live * 0.55);
+      nctx.strokeStyle = pick(PAL_LIME, a);
+      nctx.beginPath();
+      nctx.moveTo(A.cx, A.cy);
+      nctx.lineTo(B.cx, B.cy);
+      nctx.stroke();
+    }
+
+    if (!reduce && T > 3.6){
+      const dt = 0.016;
+      for (let i = 0; i < nPulses.length; i++){
+        const p = nPulses[i];
+        const e = nEdges[p.e];
+        if (!e) continue;
+        p.t += p.sp * dt * (14 / Math.max(e.len, 4));
+        if (p.t >= 1){
+          const end = p.dir ? e.b : e.a;
+          nNodes[end].flash = 1;
+          const opts = nAdj[end];
+          if (opts && opts.length){
+            let ne = opts[(Math.random() * opts.length) | 0];
+            if (opts.length > 1){
+              let guard = 0;
+              while (ne === p.e && guard++ < 4) ne = opts[(Math.random() * opts.length) | 0];
+            }
+            p.e = ne;
+            p.dir = nEdges[ne].a === end ? 1 : 0;
+          }
+          p.t = 0;
+          continue;
+        }
+        const A = nNodes[p.dir ? e.a : e.b];
+        const B = nNodes[p.dir ? e.b : e.a];
+        const px = A.cx + (B.cx - A.cx) * p.t;
+        const py = A.cy + (B.cy - A.cy) * p.t;
+        const tail = 0.34;
+        const qx = A.cx + (B.cx - A.cx) * Math.max(p.t - tail, 0);
+        const qy = A.cy + (B.cy - A.cy) * Math.max(p.t - tail, 0);
+        nctx.strokeStyle = "rgba(226,255,190," + (0.55 * fade) + ")";
+        nctx.lineWidth = 1.1 * U;
+        nctx.beginPath();
+        nctx.moveTo(qx, qy);
+        nctx.lineTo(px, py);
+        nctx.stroke();
+        nctx.fillStyle = "rgba(240,255,220," + (0.95 * fade) + ")";
+        nctx.fillRect(px - 1.0 * U, py - 1.0 * U, 2.0 * U, 2.0 * U);
+      }
+    }
+
+    for (let i = 0; i < nNodes.length; i++){
+      const n = nNodes[i];
+      if (n.form < 0.02) continue;
+      const pulse = reduce ? 0.8 : (0.66 + 0.34 * Math.sin(t * 1.5 * n.sp + n.ph));
+      const base = (n.edge ? 0.88 : 0.58) * pulse;
+      const a = clamp(fade * n.form * (base + n.flash * 0.7), 0, 1);
+      if (a < 0.03) continue;
+      const sz = (n.edge ? 1.9 : 1.6) + n.flash * 1.8;
+      const hot = n.flash > 0.25;
+      if (hot){
+        nctx.shadowBlur = 9 * n.flash;
+        nctx.shadowColor = "rgba(157,255,50,.85)";
+      }
+      nctx.fillStyle = hot ? pick(PAL_WARM, a) : pick(PAL_LIME, a);
+      nctx.fillRect(n.cx - sz / 2, n.cy - sz / 2, sz, sz);
+      if (hot){ nctx.shadowBlur = 0; nctx.shadowColor = "transparent"; }
+    }
+
+    nctx.restore();
+  }
+
   /* ================== navigation ================== */
   function scrollTotal(){ return Math.max(1, section.offsetHeight - window.innerHeight); }
   function sectionTop(){ return section.offsetTop; }
@@ -362,8 +819,8 @@
     dragging = false;
     dragId = null;
     spine.classList.remove("is-drag");
-    const n = nearestEv(currentF());
-    if (n.i >= 0 && n.days <= 8) goTo(EV[n.i].f, true);
+    const n = nearestItem(currentF());
+    if (n.i >= 0 && n.days <= 8) goTo(ITEMS[n.i].f, true);
     if (e) e.preventDefault();
   }
   spine.addEventListener("pointerup", endDrag);
@@ -423,7 +880,7 @@
     } else {
       hintEl.classList.remove("is-empty");
       hintEl.innerHTML = "<b>" + n + "</b> " + (n === 1 ? "evento" : "eventos") +
-                          " · " + MODE_LABEL[mode] + " · arrastra el nodo o usa la búsqueda";
+                          " · " + MODE_LABEL[mode] + " · arrastra el nodo";
     }
     document.getElementById("agenda-submit").disabled = n === 0;
   }
@@ -498,21 +955,23 @@
       monthEls[m].tick.classList.toggle("is-lit", past);
     }
 
-    const near = nearestEv(f);
-    setEvent(near.days <= NEAR_DAYS ? near.i : -1, f);
+    const near = nearestItem(f);
+    setItem(near.days <= NEAR_DAYS ? near.i : -1, f);
 
-    const dayOfYear = Math.round((cursorMs - Y0) / DAY) + 1;
-    spine.setAttribute("aria-valuenow", String(dayOfYear));
-    spine.setAttribute("aria-valuetext", longStr(cursorMs));
+    const inYear = cursorMs >= Y0 && cursorMs <= Y1;
+    spine.setAttribute("aria-valuenow", String(Math.round((cursorMs - EY0) / DAY) + 1));
+    spine.setAttribute("aria-valuetext", inYear ? longStr(cursorMs) : "Antes del inicio del año");
 
-    renderFlap(flapStr(cursorMs), time);
+    if (inYear) renderFlap(flapStr(cursorMs), time);
     drawBloom(f, time);
+    drawNeuro(time);
     rafId = requestAnimationFrame(frame);
   }
 
   /* ================== init ================== */
   function resize(){
     buildGrid();
+    placeBrain();
   }
 
   window.addEventListener("resize", () => {
@@ -523,6 +982,8 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting && rafId === null){
+        if (wasVisible) neuroT0 = 0;
+        wasVisible = true;
         rafId = requestAnimationFrame(frame);
       } else if (!e.isIntersecting && rafId !== null){
         cancelAnimationFrame(rafId); rafId = null;
@@ -530,9 +991,31 @@
     });
   }, {rootMargin:"120px"});
 
+  /* ================== menu navigation ================== */
+  function nextUpcomingEvent(){
+    for (let i = 0; i < EV.length; i++) if (EV[i].ms >= todayMs) return EV[i];
+    return EV[EV.length - 1];
+  }
+
+  const navLinks = Array.prototype.slice.call(document.querySelectorAll(".topbar__nav a[data-target]"));
+  navLinks.forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const key = a.dataset.target;
+      const item = key === "evento" ? nextUpcomingEvent()
+        : key === "home" ? HOME_ITEM
+        : PAGE_ITEMS.filter(p => p.id === key)[0];
+      if (item) goTo(item.f, true);
+    });
+  });
+
+  spine.setAttribute("aria-valuemin", "1");
+  spine.setAttribute("aria-valuemax", String(PRELUDE_DAYS + 365));
+
   resize();
+  buildBrain();
   refreshFilter();
-  renderFlap(flapStr(msOf(todayIn ? todayF : 0)));
+  if (todayIn) renderFlap(flapStr(todayMs));
   io.observe(section);
 
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
