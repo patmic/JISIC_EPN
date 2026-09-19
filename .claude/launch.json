@@ -4,7 +4,7 @@
     {
       "name": "jisic-static",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8791"],
+      "runtimeArgs": ["-m", "http.server", "8791", "--directory", "frontend"],
       "port": 8791
     }
   ]

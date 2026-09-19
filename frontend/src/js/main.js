@@ -4,7 +4,7 @@
   /* ======================================================================
      XIII JISIC 2026 — datos reales tomados de jisic.epn.edu.ec
      Format: { date:"YYYY-MM-DD", type, title, venue, speaker, body, page? }
-     Each event's content lives in pages/evento/<page>/index.html
+     Each event's content lives in src/pages/evento/<page>/index.html
      (page defaults to YYYY_MM_DD_Evento); the fields here are the
      timeline label and fallback text.
      ====================================================================== */
@@ -277,7 +277,7 @@
     return -1;
   }
 
-  /* pages/<id>/index.html is fetched and embedded in the stage; the JS
+  /* src/pages/<id>/index.html is fetched and embedded in the stage; the JS
      copy of the text is the fallback (e.g. when opened from file://). */
   const pageBox = document.getElementById("pageBox");
   const pageCache = {};
@@ -296,7 +296,7 @@
     };
     const dir = item.kind === "event" ? "evento/" + (item.page || item.date.replace(/-/g, "_") + "_Evento") : item.id;
     if (pageCache[dir]) return show(pageCache[dir]);
-    const url = new URL("./pages/" + dir + "/index.html", location.href);
+    const url = new URL("./src/pages/" + dir + "/index.html", location.href);
     fetch(url)
       .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(t => {
