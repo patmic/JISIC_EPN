@@ -91,6 +91,12 @@
     <div class="scrim"></div>
 
     <div class="stage" id="stage">
+      <div class="countdown" id="countdown" role="timer" aria-label="Tiempo restante para el evento" hidden>
+        <div class="countdown__box"><b id="cdWeeks">00</b><span>semanas</span></div>
+        <div class="countdown__box"><b id="cdDays">00</b><span>días</span></div>
+        <div class="countdown__box"><b id="cdHours">00</b><span>horas</span></div>
+      </div>
+      <div class="counter" id="counter" role="status" aria-live="off"></div>
       <div class="stage__head">
         <p class="stage__eyebrow" id="eyebrow">—</p>
         <span class="chip" id="when">—</span>
@@ -99,8 +105,6 @@
       <p class="stage__body reveal" id="body"><span>—</span></p>
       <div class="meta" id="meta"></div>
       <div class="stage__page" id="pageBox" hidden></div>
-      <div class="counter" id="counter" role="status" aria-live="off"></div>
-      <p class="counter__label">Fecha en la línea</p>
       <div class="ctl">
         <button type="button" id="btnPrev"><span aria-hidden="true">⟰</span>Anterior</button>
         <button type="button" id="btnToday" class="is-key">Hoy</button>

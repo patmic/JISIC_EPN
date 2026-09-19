@@ -3,7 +3,10 @@
 
   /* ======================================================================
      XIII JISIC 2026 — datos reales tomados de jisic.epn.edu.ec
-     Format: { date:"YYYY-MM-DD", type, title, venue, speaker, body }
+     Format: { date:"YYYY-MM-DD", type, title, venue, speaker, body, page? }
+     Each event's content lives in pages/evento/<page>/index.html
+     (page defaults to YYYY_MM_DD_Evento); the fields here are the
+     timeline label and fallback text.
      ====================================================================== */
   const YEAR = 2026;
   const VENUE = "Teatro Politécnico, edificio 1 · Escuela Politécnica Nacional";
@@ -16,7 +19,16 @@
       body:"Charlas sobre comunicación, branding, sociedad y quality engineering en la era de la IA, seguidas del panel \"Inteligencia Artificial con rostro humano: entre la innovación y la responsabilidad\" y la ceremonia de reconocimiento al comité organizador." },
     { date:"2026-06-26", type:"Día 3 · Concurso y networking", title:"Concurso de IA, Networking y Premiación",
       venue:VENUE, speaker:"Comité organizador JISIC",
-      body:"Cierre de las jornadas con el Concurso de Inteligencia Artificial (07:30–10:30), un espacio de networking entre asistentes y empresas (10:30–12:30) y la premiación final (12:30–13:30)." }
+      body:"Cierre de las jornadas con el Concurso de Inteligencia Artificial (07:30–10:30), un espacio de networking entre asistentes y empresas (10:30–12:30) y la premiación final (12:30–13:30)." },
+    { date:"2026-10-14", page:"2026_10_14_ConcursoIA", type:"Concurso", title:"Concurso de IA",
+      venue:"Por confirmar", speaker:"Comité organizador JISIC",
+      body:"Competencia abierta a estudiantes y participantes." },
+    { date:"2026-11-14", page:"2026_11_14_Networking", type:"Networking", title:"Networking",
+      venue:"Por confirmar", speaker:"Comité organizador JISIC",
+      body:"Espacio de contacto entre asistentes y empresas." },
+    { date:"2026-12-14", page:"2026_12_14_Workshop", type:"Workshop", title:"Workshop",
+      venue:"Por confirmar", speaker:"Comité organizador JISIC",
+      body:"Taller práctico con cupo limitado." }
   ];
 
   /* Menu pages, rendered as points at the start of the timeline (before ENE).
@@ -282,16 +294,17 @@
         if (window.initCarousels) window.initCarousels(pageBox);
       });
     };
-    if (pageCache[item.id]) return show(pageCache[item.id]);
-    const url = new URL("./pages/" + item.id + "/index.html", location.href);
+    const dir = item.kind === "event" ? "evento/" + (item.page || item.date.replace(/-/g, "_") + "_Evento") : item.id;
+    if (pageCache[dir]) return show(pageCache[dir]);
+    const url = new URL("./pages/" + dir + "/index.html", location.href);
     fetch(url)
       .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(t => {
         const m = new DOMParser().parseFromString(t, "text/html").querySelector("main");
         if (!m) return;
         const scripts = [].map.call(m.querySelectorAll("script[src]"), s => new URL(s.getAttribute("src"), url).href);
-        pageCache[item.id] = { html: m.innerHTML, scripts, base: url.href };
-        show(pageCache[item.id]);
+        pageCache[dir] = { html: m.innerHTML, scripts, base: url.href };
+        show(pageCache[dir]);
       })
       .catch(() => {});
   }
@@ -305,6 +318,24 @@
     }));
   }
 
+  /* countdown (weeks / days / hours) to the event on stage */
+  const cdBox = document.getElementById("countdown");
+  const cdW = document.getElementById("cdWeeks"), cdD = document.getElementById("cdDays"), cdH = document.getElementById("cdHours");
+  function updateCountdown(){
+    const ev = activeItem && activeItem.kind === "event" ? activeItem : null;
+    if (!ev){ cdBox.hidden = true; return; }
+    const [y, m, d] = ev.date.split("-").map(Number);
+    const left = new Date(y, m - 1, d).getTime() - Date.now();
+    cdBox.hidden = left <= 0;
+    if (left <= 0) return;
+    let h = Math.floor(left / 3600000);
+    const w = Math.floor(h / 168); h -= w * 168;
+    const dd = Math.floor(h / 24); h -= dd * 24;
+    const p2 = n => String(n).padStart(2, "0");
+    cdW.textContent = p2(w); cdD.textContent = p2(dd); cdH.textContent = p2(h);
+  }
+  setInterval(updateCountdown, 30000);
+
   function setNavCurrent(id){
     navLinks.forEach(a => {
       if (a.dataset.target === id) a.setAttribute("aria-current", "page");
@@ -316,6 +347,7 @@
     const item = idx >= 0 ? ITEMS[idx] : null;
     if (item === activeItem) return;
     activeItem = item;
+    updateCountdown();
 
     if (!item){
       const nx = nextItemFrom(cursorF);
@@ -350,6 +382,7 @@
         '<div><span>Fecha</span><b>' + longStr(e.ms) + '</b></div>';
       setNavCurrent("evento");
       brainBurst();
+      embedPage(item);
     } else {
       stage.classList.remove("is-idle");
       stage.classList.add("is-page");
@@ -364,7 +397,7 @@
       setNavCurrent(item.id);
       if (item.kind === "page") embedPage(item);
     }
-    if (item && item.kind !== "page"){ stage.classList.remove("is-embed"); pageBox.hidden = true; }
+    if (item && item.kind === "home"){ stage.classList.remove("is-embed"); pageBox.hidden = true; }
 
     const idOf = i => (i >= 0 ? ITEMS[i] : null);
     evEls.forEach((el, i) => el.classList.toggle("is-active", idOf(idx) === EV[i]));

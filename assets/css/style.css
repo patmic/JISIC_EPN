@@ -471,6 +471,38 @@ body{
 .stage__page .stage__title{margin:0 0 12px}
 .stage.is-embed{max-width:none}
 .stage__page .stage__body{max-width:90ch}
+.countdown{
+  position:absolute;
+  top:0;right:0;
+  display:flex;
+  gap:clamp(8px,1vw,14px);
+}
+.countdown[hidden]{display:none}
+.countdown__box{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-width:clamp(64px,7vw,104px);
+  padding:clamp(10px,1.2vw,16px) clamp(8px,1vw,14px) clamp(8px,1vw,12px);
+  border-radius:16px;
+  background:rgba(0,0,0,.38);
+  border:1px solid var(--line);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+.countdown__box b{
+  font:600 clamp(30px,4vw,56px)/1 var(--font);
+  letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink);
+}
+.countdown__box span{
+  margin-top:6px;
+  font:600 clamp(11px,1vw,14px)/1 var(--font);
+  color:var(--ink-dim);
+}
+.stage.is-page .countdown,
+.stage.is-idle .countdown{display:none}
 .stage.is-page .chip,
 .stage.is-page .counter,
 .stage.is-page .counter__label{display:none}
@@ -543,10 +575,11 @@ body{
   display:flex;
   align-items:flex-end;
   gap:1px;
-  font:600 clamp(38px,6.4vw,72px)/1 var(--font);
+  font:600 clamp(19px,3.2vw,36px)/1 var(--font);
   letter-spacing:-.04em;
   font-variant-numeric:tabular-nums;
   text-shadow:0 0 34px rgba(157,255,50,.18);
+  margin-bottom:22px;
 }
 .slot{
   position:relative;
@@ -572,7 +605,7 @@ body{
   pointer-events:none;
 }
 .counter__label{
-  margin:14px 0 0;
+  margin:14px 0 24px;
   font:500 11px/1.4 var(--mono);
   letter-spacing:.14em;
   text-transform:uppercase;
@@ -645,7 +678,8 @@ body{
   .stage__title{font-size:clamp(24px,7vw,34px);margin-bottom:8px}
   .stage__body{font-size:13.5px;max-width:36ch;margin-bottom:14px}
   .meta{display:none}
-  .counter{font-size:clamp(30px,10vw,44px)}
+  .counter{font-size:clamp(15px,5vw,22px)}
+  .countdown{top:-6px;transform:scale(.62);transform-origin:top right}
   .counter__label{font-size:9.5px}
   .ctl{margin-top:18px}
   .ctl button{padding:7px 11px;font-size:10px}
