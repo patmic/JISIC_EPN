@@ -3,15 +3,24 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nosotros — XIII JISIC 2026</title>
+<title>Comité — XIII JISIC 2026</title>
 <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <main class="embed">
-  <h2 class="stage__title">Nosotros</h2>
+  <h2 class="stage__title">Comité</h2>
   <p class="stage__body">
-    La Facultad de Ingeniería de Sistemas de la Escuela Politécnica Nacional organiza las XIII Jornadas JISIC 2026 como un espacio de encuentro entre la academia y la industria, donde estudiantes, docentes, graduados, investigadores, profesionales y empresas comparten experiencias, tendencias y soluciones tecnológicas vinculadas con la Inteligencia Artificial, la innovación y la transformación digital.
+    La Facultad de Ingeniería de Sistemas de la Escuela Politécnica Nacional organiza las XIV Jornadas JISIC 2026 como un espacio de encuentro entre la academia y la industria, donde estudiantes, docentes, graduados, investigadores, profesionales y empresas comparten experiencias, tendencias y soluciones tecnológicas vinculadas con la Inteligencia Artificial, la innovación y la transformación digital.
   </p>
+  <br>
+  <ul class="team-info">
+    <li><b>Coordinador</b><span>Conferencias y sesiones especializadas.</span></li>
+    <li><b>Comité directivo</b><span>Workshops, retos y prototipos.</span></li>
+    <li><b>Comunicación</b><span>Networking</span></li>
+    <li><b>Web master</b><span>web site JISIC.</span></li>
+    <li><b>Colaboradores</b><span>Hands-on, hackatones y talleres.</span></li>
+  </ul>
+  <br>
   <div class="team-carousel" data-carousel>
     <script type="application/json" class="carousel-data">[
       {"name":"MSc. Viviana Párraga",   "role":"Coordinador"          ,"img":"../../assets/images/comite/pat_mic.png"         ,"hue":95},
@@ -22,16 +31,17 @@
       {"name":"MSc. Hernán Ordoñez"  ,  "role":"Web master"           ,"img":""          ,"hue":285},
        
       {"name":"Evelyn Chanatasig"   ,  "role":"colaborador"           ,"img":""          ,"hue":285},
-      {"name":"Angymar Ganchala"    ,  "role":"colaborador"           ,"img":""          ,"hue":285},
       {"name":"Andrés Galárraga"    ,  "role":"colaborador"           ,"img":""          ,"hue":285},
       {"name":"Alfredo Romero"      ,  "role":"colaborador"           ,"img":""          ,"hue":285},
-      {"name":"Mateo Jácome"        ,  "role":"colaborador"           ,"img":""          ,"hue":285},
-      {"name":"Sebastián Correa"    ,  "role":"colaborador"           ,"img":""          ,"hue":285},
       {"name":"Renato Paucar"       ,  "role":"colaborador"           ,"img":""          ,"hue":285}
 
     ]</script>
   </div>
   <style>
+    .team-info{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px clamp(18px,3vw,42px)}
+    .team-info li{padding-left:12px;border-left:2px solid #4fd3e6;text-align:left}
+    .team-info b{display:block;font:700 clamp(11px,1vw,14px) var(--font);letter-spacing:.04em;text-transform:uppercase;color:#4fd3e6}
+    .team-info span{display:block;margin-top:2px;font:400 clamp(11px,1vw,14px)/1.4 var(--font);color:var(--ink-dim)}
     .team-carousel{--cw:clamp(96px,10vw,150px);--ch:calc(var(--cw)*1.32);margin-top:6px;max-width:none}
     .tc-stage{position:relative;height:calc(var(--ch) + 24px);perspective:900px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;outline:none}
     .tc-stage.dragging{cursor:grabbing}

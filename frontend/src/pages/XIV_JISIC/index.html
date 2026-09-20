@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>XIV JISIC</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+<main class="embed">
+  <section class="xj">
+    <header class="xj__hero">
+      <h2 class="xj__year">XIV JISIC</h2>
+      <p class="xj__by">Nueva temporada</p>
+      <p class="xj__when">XIV Jornadas JISIC
+        <br> Octubre de 2026 a diciembre de 2027
+        <br> Escuela Politécnica Nacional</p>
+    </header>
+
+    <div class="xj__cols">
+      <article class="xj__about">
+        <p>El XIV JISIC reúne conferencias magistrales, workshops técnicos con cupos limitados, un concurso de Inteligencia Artificial y un espacio de networking entre estudiantes, académicos y empresas. La entrada a las charlas y al concurso es gratuita. La programación se irá confirmando durante la temporada.</p>
+        <p class="xj__by">
+          Coordinador XIV JISIC 2026-2027</p>
+      </article>
+
+      <div class="hor">
+        <h3><small>Agenda</small> ...</h3>
+        <input type="radio" name="hor" id="t-c" class="hor__r" checked>
+        <input type="radio" name="hor" id="t-n" class="hor__r">
+        <input type="radio" name="hor" id="t-w" class="hor__r">
+        <input type="radio" name="hor" id="t-k" class="hor__r">
+        <div class="hor__tabs">
+          <label for="t-c">Concurso de IA</label>
+          <label for="t-n">Networking</label>
+          <label for="t-w">Workshop</label>
+          <label for="t-k">Conferencia</label>
+          <label for="t-k">Podcast</label>
+        </div>
+        <div class="hor__panels">
+          <div class="hor__p" id="p-c">
+            <p class="hor__date">Miércoles 14 de Octubre de 2026 · Sede por confirmar</p>
+            <ol>
+          <li><time>Por definir</time><div><b>Concurso de Inteligencia Artificial</b><span>Competencia abierta a estudiantes y participantes.</span></div></li>
+            </ol>
+          </div>
+          <div class="hor__p" id="p-n">
+            <p class="hor__date">Sábado 14 de Noviembre de 2026 · Sede por confirmar</p>
+            <ol>
+          <li><time>Por definir</time><div><b>Networking</b><span>Espacio de contacto entre asistentes y empresas.</span></div></li>
+            </ol>
+          </div>
+          <div class="hor__p" id="p-w">
+            <p class="hor__date">Lunes 14 de Diciembre de 2026 · Sede por confirmar</p>
+            <ol>
+          <li><time>Por definir</time><div><b>Workshop</b><span>Taller práctico con cupo limitado.</span></div></li>
+            </ol>
+          </div>
+          <div class="hor__p" id="p-k">
+            <p class="hor__date">Sábado 24 de Abril de 2027 · Sede por confirmar</p>
+            <ol>
+          <li><time>Por definir</time><div><b>Conferencia</b><span>Conferencias magistrales con expertos de la academia y la industria.</span></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .xj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:clamp(14px,2.4vw,32px);row-gap:0;max-width:960px;align-items:start}
+    .xj__hero,.xj__cols{display:contents}
+    .xj__year{grid-column:1/-1}
+    .xj__hero > p,.xj__about{grid-column:1}
+    .hor{grid-column:2;grid-row:2 / span 6}
+    .xj__year{margin:0;font:700 clamp(28px,4.4vw,56px)/1 var(--font);letter-spacing:-.03em;background:linear-gradient(90deg,#2FC5B4,#4C7AD1 60%,#9B5BC5);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .xj__tag{margin:6px 0 0;font:700 clamp(20px,3vw,38px)/1.05 var(--font);letter-spacing:-.02em;color:var(--ink)}
+    .xj__when{margin:10px 0 14px;font:400 clamp(12px,1.05vw,15px)/1.5 var(--font);color:var(--ink-dim)}
+    .xj h3{margin:0 0 10px;font:600 clamp(18px,2vw,26px)/1.1 var(--font);letter-spacing:-.02em;color:var(--ink)}
+    .xj h3 small{color:#4fd3e6;font:inherit;margin-right:.3em}
+    .xj__about p{margin:0 0 10px;font:400 clamp(12px,1vw,14px)/1.6 var(--font);color:var(--ink-dim)}
+    .xj__about .xj__by{color:var(--ink);font-weight:500}
+    .hor__r{position:absolute;opacity:0;pointer-events:none}
+    .hor__tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+    .hor__tabs label{cursor:pointer;font:600 clamp(11px,.95vw,13px) var(--font);color:var(--ink-dim);padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:color .2s,background .2s,border-color .2s}
+    .hor__tabs label:hover{color:var(--ink)}
+    #t-c:checked ~ .hor__tabs label[for="t-c"],
+    #t-n:checked ~ .hor__tabs label[for="t-n"],
+    #t-w:checked ~ .hor__tabs label[for="t-w"],
+    #t-k:checked ~ .hor__tabs label[for="t-k"]{color:#0c1206;background:var(--lime);border-color:var(--lime)}
+    .hor__p{display:none}
+    #t-c:checked ~ .hor__panels #p-c,
+    #t-n:checked ~ .hor__panels #p-n,
+    #t-w:checked ~ .hor__panels #p-w,
+    #t-k:checked ~ .hor__panels #p-k{display:block}
+    .hor__panels{max-height:clamp(150px,30vh,300px);overflow-y:auto;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(157,255,50,.3) transparent}
+    .hor__date{margin:0 0 8px;font:500 11px/1.4 var(--mono);letter-spacing:.06em;color:var(--lime)}
+    .hor__p ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+    .hor__p li{display:grid;grid-template-columns:96px 1fr;gap:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+    .hor__p time{font:500 11px/1.5 var(--mono);color:var(--ink-faint)}
+    .hor__p b{display:block;font:600 clamp(12px,1vw,14px)/1.35 var(--font);color:var(--ink)}
+    .hor__p li span{display:block;margin-top:2px;font:400 11px/1.4 var(--font);color:var(--ink-dim)}
+    @media (max-width:760px){.xj{grid-template-columns:1fr}.hor{grid-column:1;grid-row:auto;margin-top:14px}}
+  </style>
+</main>
+</body>
+</html>

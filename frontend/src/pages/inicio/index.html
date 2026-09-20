@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Inicio — XIII JISIC 2026</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+<main class="embed">
+  <section class="home">
+    <h3 class="home__title">JISIC</h3>
+    <p class="home__sub">JORNADAS DE INGENIERÍA DE SISTEMAS INFORMÁTICOS Y DE COMPUTACIÓN</p>
+    <p class="home__lead">Tu espacio de encuentro entre la academia, la industria y la sociedad para compartir conocimiento, investigación y experiencias en Inteligencia Artificial, transformación digital y tecnología de vanguardia que están redefiniendo el futuro.</p>
+    <br>
+    <br>
+
+    <p class="home__cta">Diseña TU experiencia para que el conocimiento salga de la teoría y se convierta en interacción, práctica y colaboración.</p>
+    <div class="home__cards">
+      <div><b>Conferencias</b><span>alto impacto</span></div>
+      <div><b>Workshops</b><span>prácticos</span></div>
+      <div><b>Networking</b><span>académico-profesional</span></div>
+      <div><b>Concursos</b><span>Retos tecnológicos</span></div> 
+      <div><b>Podcast</b><span> YouTube, Facebook </span></div>
+    </div>
+
+    <ul class="home__tags">
+      <div class="home__orgs"><span>Inteligencia Artificial</span></div>
+      <div class="home__orgs"><span>Ingeniería de Software</span></div>
+      <div class="home__orgs"><span>Ciberseguridad</span></div>
+      <div class="home__orgs"><span>Datos</span></div>
+      <div class="home__orgs"><span>Cloud</span></div>
+      <div class="home__orgs"><span>Blockchain</span></div>
+      <div class="home__orgs"><span>Gobernanza</span></div>
+      <div class="home__orgs"><span>UX / UI / HCI</span></div>
+    </ul>
+
+  </section>
+
+  <style>
+    .home{display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(8px,1.4vh,14px);max-width:none;width:100%;margin:0}
+    .home__orgs{display:flex;gap:8px}
+    .home__orgs span{font:600 11px var(--mono);letter-spacing:.14em;color:var(--lime);padding:5px 12px;border:1px solid rgba(157,255,50,.3);border-radius:99px;background:rgba(157,255,50,.06)}
+    .home__title{margin:0;font:700 clamp(54px,9vw,120px)/.95 var(--font);letter-spacing:-.05em;background:linear-gradient(90deg,#2FC5B4,#4C7AD1 45%,#9B5BC5 75%,#F0479C);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .home__sub{margin:0;font:600 clamp(13px,1.3vw,18px) var(--font);color:var(--ink)}
+    .home__lead{margin:0;max-width:92ch;font:400 clamp(13px,1.25vw,17px)/1.55 var(--font);color:var(--ink-dim)}
+    .home__tags{list-style:none;margin:2px 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+    .home__tags li{font:500 clamp(11px,.95vw,13px) var(--font);color:var(--ink);padding:7px 14px;border-radius:99px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+    .home__cta{margin:0;max-width:92ch;font:500 clamp(12px,1.05vw,15px)/1.5 var(--font);color:var(--ink)}
+    .home__cards{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;width:100%;margin-top:4px}
+    .home__cards div{display:flex;flex-direction:column;gap:4px;padding:clamp(10px,1.4vw,18px) 10px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+    .home__cards b{font:700 clamp(14px,1.7vw,24px)/1.1 var(--font);letter-spacing:-.02em;color:var(--ink)}
+    .home__cards span{font:400 clamp(10px,.9vw,13px) var(--font);color:var(--ink-dim)}
+    @media (max-width:640px){.home__cards{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</main>
+</body>
+</html>

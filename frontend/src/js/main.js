@@ -11,31 +11,31 @@
   const YEAR = 2026;
   const VENUE = "Teatro Politécnico, edificio 1 · Escuela Politécnica Nacional";
   const EVENTS = [
-    { date:"2026-06-24", type:"Día 1 · Charlas magistrales", title:"Apertura: La IA transformando el mundo",
-      venue:VENUE, speaker:"Diego Apolo, Patricia Acosta, David Sperber, Henry Paz y más",
-      body:"Inauguración de las XIII Jornadas JISIC. Charlas sobre el talento que la IA no puede copiar, datos aplicados a la educación, ética y negocios, y el perfil del profesional del futuro. Cierra Carlos Rojas (Bizdata.chat) con \"Confesiones de un creador de agentes IA\"." },
-    { date:"2026-06-25", type:"Día 2 · Panel y reconocimiento", title:"Inteligencia Artificial con rostro humano",
+    { date:"2026-06-25", page:"2026_06_25_XIV_IAHumano", type:"Día 2 · Panel y reconocimiento", title:"Inteligencia Artificial con rostro humano",
       venue:VENUE, speaker:"Sang Yoo, Ola Bini, Enrique Mafla, Santiago Lucano y más",
       body:"Charlas sobre comunicación, branding, sociedad y quality engineering en la era de la IA, seguidas del panel \"Inteligencia Artificial con rostro humano: entre la innovación y la responsabilidad\" y la ceremonia de reconocimiento al comité organizador." },
-    { date:"2026-06-26", type:"Día 3 · Concurso y networking", title:"Concurso de IA, Networking y Premiación",
+    { date:"2026-06-26", page:"2026_06_26_XIV_Jornada", type:"Día 3 · Concurso y networking", title:"Concurso de IA, Networking y Premiación",
       venue:VENUE, speaker:"Comité organizador JISIC",
       body:"Cierre de las jornadas con el Concurso de Inteligencia Artificial (07:30–10:30), un espacio de networking entre asistentes y empresas (10:30–12:30) y la premiación final (12:30–13:30)." },
-    { date:"2026-10-14", page:"2026_10_14_ConcursoIA", type:"Concurso", title:"Concurso de IA",
+    { date:"2026-10-14", page:"2026_10_14_XIV_ConcursoIA", type:"Concurso", title:"Concurso de IA",
       venue:"Por confirmar", speaker:"Comité organizador JISIC",
       body:"Competencia abierta a estudiantes y participantes." },
-    { date:"2026-11-14", page:"2026_11_14_Networking", type:"Networking", title:"Networking",
+    { date:"2026-11-14", page:"2026_11_14_XIV_Networking", type:"Networking", title:"Networking",
       venue:"Por confirmar", speaker:"Comité organizador JISIC",
       body:"Espacio de contacto entre asistentes y empresas." },
-    { date:"2026-12-14", page:"2026_12_14_Workshop", type:"Workshop", title:"Workshop",
+    { date:"2026-12-01", page:"2026_12_01_XIV_PodcastTECH", type:"Podcast", title:"FUTURO & TECH",
+      venue:"Por confirmar", speaker:"Por confirmar",
+      body:"Podcast sobre Innovación y Tecnologías Emergentes." },
+    { date:"2026-12-14", page:"2026_12_14_XIV_Workshop", type:"Workshop", title:"Workshop",
       venue:"Por confirmar", speaker:"Comité organizador JISIC",
       body:"Taller práctico con cupo limitado." }
   ];
 
   /* Menu pages, rendered as points at the start of the timeline (before ENE).
      Each is placed PRELUDE_DAYS/5 apart on a virtual date range before Jan 1.
-     Contenido real tomado de jisic.epn.edu.ec (secciones Nosotros / Contacto). */
+     Contenido real tomado de jisic.epn.edu.ec (sección Comité). */
   const PAGES = [
-    { id:"nosotros", title:"Nosotros",
+    { id:"comite", title:"Comité",
       body:"La Facultad de Ingeniería de Sistemas de la Escuela Politécnica Nacional organiza las XIII Jornadas JISIC 2026 como un espacio de encuentro entre la academia y la industria, donde estudiantes, docentes, graduados, investigadores, profesionales y empresas comparten experiencias, tendencias y soluciones tecnológicas vinculadas con la Inteligencia Artificial, la innovación y la transformación digital.",
       meta:[
         ["Coordinador","PhD. Andrés Larco"],
@@ -43,29 +43,29 @@
         ["Comunicación","MSc. Gabriela García"],
         ["Web master","MSc. Hernán Ordoñez"]
       ] },
-    { id:"servicios", title:"Servicios",
-      body:"JISIC reúne conferencias magistrales, workshops técnicos con cupos limitados, un concurso de Inteligencia Artificial y un espacio de networking entre estudiantes, académicos y empresas. La entrada a las charlas y al concurso es gratuita.",
+    { id:"XI_JISIC", title:"XI JISIC",
+      body:"XI Jornadas JISIC 2024 · Blockchain como tecnología habilitadora de la transformación digital. 29, 30 y 31 de mayo de 2024, Auditorio 2, EARME edificio 26 – Escuela Politécnica Nacional.",
       meta:[
-        ["Conferencias","Charlas magistrales con expertos de la academia y la industria"],
-        ["Workshops","Talleres prácticos con cupo limitado"],
-        ["Concurso de IA","Competencia abierta a estudiantes y participantes"],
-        ["Networking","Espacio de contacto entre asistentes y empresas"]
+        ["Coordinador","Andrés Larco, PhD."]
       ] },
-    { id:"contacto", title:"Contacto",
-      body:"Escuela Politécnica Nacional · Campus \"José Rubén Orellana\", Edificio de Sistemas, segundo piso, Av. Ladrón de Guevara E253 y Andalucía, Quito, Ecuador.",
+    { id:"XII_JISIC", title:"XII JISIC",
+      body:"XII Jornadas JISIC 2025 · Reinventando el futuro digital. 28, 29 y 30 de octubre de 2025, Teatro Politécnico, edificio 1 – Escuela Politécnica Nacional.",
       meta:[
-        ["Correo","jisic@epn.edu.ec"],
-        ["Contacto","Jairo Quishpe · Presidente AEIS"],
-        ["Dirección","Av. Ladrón de Guevara E253 y Andalucía, Quito"]
+        ["Organizador","Jairo Quishpe · Presidente AEIS"]
       ] },
-    { id:"auspiciantes", title:"Auspiciantes",
-      body:"Esta edición la organizan la Facultad de Ingeniería de Sistemas (FIS) y la Escuela Politécnica Nacional (EPN). Los auspiciantes de la XIII edición se anunciarán próximamente.",
+    { id:"XIII_JISIC", title:"XIII JISIC",
+      body:"XIII Jornadas JISIC 2026 · La IA transformando el mundo. 24, 25 y 26 de junio de 2026, Teatro Politécnico, edificio 1 – Escuela Politécnica Nacional.",
       meta:[
-        ["Organiza","Facultad de Ingeniería de Sistemas — EPN"]
+        ["Coordinador","PhD. Andrés Larco"]
+      ] },
+    { id:"XIV_JISIC", title:"XIV JISIC",
+      body:"XIV Jornadas JISIC · nueva temporada de octubre de 2026 a diciembre de 2027. Concurso de IA, networking, workshops y conferencias.",
+      meta:[
+        ["Temporada","Octubre 2026 – diciembre 2027"]
       ] }
   ];
   const HOME = { id:"home", title:"XIII JISIC 2026",
-    body:"La IA transformando el mundo. Las Jornadas de Ingeniería de Sistemas Informáticos y de Computación son el espacio de encuentro entre la academia y la industria de la Facultad de Ingeniería de Sistemas (EPN). Arrastra el nodo, haz clic en un mes o en un rombo, o sigue el scroll para recorrer la agenda.",
+    body:"La IA transformando el mundo. Las Jornadas de Ingeniería de Sistemas Informáticos y de Computación son el espacio de encuentro entre la academia y la industria de la Facultad de Ingeniería de Sistemas (EPN).",
     meta:[
       ["Fecha","24, 25 y 26 de junio de 2026"],
       ["Sede",VENUE]
@@ -181,6 +181,13 @@
     el.style.top = (posOf(p.f) * 100) + "%";
     el.innerHTML = '<span class="pagept__tip"></span>';
     el.querySelector(".pagept__tip").textContent = p.title;
+    if (/JISIC$/.test(p.title)){
+      el.classList.add("pagept--lbl");
+      const l = document.createElement("span");
+      l.className = "pagept__lbl";
+      l.textContent = p.title;
+      el.appendChild(l);
+    }
     rail.appendChild(el);
     p.el = el;
   });
@@ -288,13 +295,16 @@
       if (activeItem !== item) return;
       pageBox.innerHTML = entry.html;
       pageBox.dataset.base = entry.base;
+      pageBox.querySelectorAll("img[src]").forEach(im => {
+        im.src = new URL(im.getAttribute("src"), entry.base).href;
+      });
       pageBox.hidden = false;
       stage.classList.add("is-embed");
       Promise.all(entry.scripts.map(loadScript)).then(() => {
         if (window.initCarousels) window.initCarousels(pageBox);
       });
     };
-    const dir = item.kind === "event" ? "evento/" + (item.page || item.date.replace(/-/g, "_") + "_Evento") : item.id;
+    const dir = item.kind === "home" ? "inicio" : item.kind === "event" ? "evento/" + (item.page || item.date.replace(/-/g, "_") + "_Evento") : item.id;
     if (pageCache[dir]) return show(pageCache[dir]);
     const url = new URL("./src/pages/" + dir + "/index.html", location.href);
     fetch(url)
@@ -395,9 +405,8 @@
         return '<div><span>' + kv[0] + '</span><b>' + kv[1] + '</b></div>';
       }).join("");
       setNavCurrent(item.id);
-      if (item.kind === "page") embedPage(item);
+      embedPage(item);
     }
-    if (item && item.kind === "home"){ stage.classList.remove("is-embed"); pageBox.hidden = true; }
 
     const idOf = i => (i >= 0 ? ITEMS[i] : null);
     evEls.forEach((el, i) => el.classList.toggle("is-active", idOf(idx) === EV[i]));
