@@ -30,12 +30,13 @@
         <input type="radio" name="hor" id="t-n" class="hor__r">
         <input type="radio" name="hor" id="t-w" class="hor__r">
         <input type="radio" name="hor" id="t-k" class="hor__r">
+        <input type="radio" name="hor" id="t-p" class="hor__r">
         <div class="hor__tabs">
-          <label for="t-c">Concurso de IA</label>
-          <label for="t-n">Networking</label>
-          <label for="t-w">Workshop</label>
-          <label for="t-k">Conferencia</label>
-          <label for="t-k">Podcast</label>
+          <label for="t-c"><i class="cat-i cat-i--concurso"></i>Concurso de IA</label>
+          <label for="t-n"><i class="cat-i cat-i--networking"></i>Networking</label>
+          <label for="t-w"><i class="cat-i cat-i--workshop"></i>Workshop</label>
+          <label for="t-k"><i class="cat-i cat-i--conferencia"></i>Conferencia</label>
+          <label for="t-p"><i class="cat-i cat-i--podcast"></i>Podcast</label>
         </div>
         <div class="hor__panels">
           <div class="hor__p" id="p-c">
@@ -60,6 +61,16 @@
             <p class="hor__date">Sábado 24 de Abril de 2027 · Sede por confirmar</p>
             <ol>
           <li><time>Por definir</time><div><b>Conferencia</b><span>Conferencias magistrales con expertos de la academia y la industria.</span></div></li>
+            </ol>
+          </div>
+          <div class="hor__p" id="p-p">
+            <p class="hor__date">Jueves 8 de Octubre de 2026 · Evento virtual</p>
+            <ol>
+          <li><time>13h00</time><div><b>¿Cómo aprende realmente una IA?</b><span>Road to JISIC 2027 · Ph.D. Miguel Flores, docente EPN.</span></div></li>
+            </ol>
+            <p class="hor__date">Martes 1 de Diciembre de 2026 · Evento virtual</p>
+            <ol>
+          <li><time>Por definir</time><div><b>FUTURO &amp; TECH</b><span>Podcast sobre innovación y tecnologías emergentes.</span></div></li>
             </ol>
           </div>
         </div>
@@ -87,12 +98,16 @@
     #t-c:checked ~ .hor__tabs label[for="t-c"],
     #t-n:checked ~ .hor__tabs label[for="t-n"],
     #t-w:checked ~ .hor__tabs label[for="t-w"],
-    #t-k:checked ~ .hor__tabs label[for="t-k"]{color:#0c1206;background:var(--lime);border-color:var(--lime)}
+    #t-k:checked ~ .hor__tabs label[for="t-k"],
+    #t-p:checked ~ .hor__tabs label[for="t-p"]{color:#0c1206;background:var(--lime);border-color:var(--lime)}
+    .hor__tabs label .cat-i{color:var(--cat)}
+    #t-c:checked ~ .hor__tabs label[for="t-c"] .cat-i,#t-n:checked ~ .hor__tabs label[for="t-n"] .cat-i,#t-w:checked ~ .hor__tabs label[for="t-w"] .cat-i,#t-k:checked ~ .hor__tabs label[for="t-k"] .cat-i,#t-p:checked ~ .hor__tabs label[for="t-p"] .cat-i{color:#0c1206}
     .hor__p{display:none}
     #t-c:checked ~ .hor__panels #p-c,
     #t-n:checked ~ .hor__panels #p-n,
     #t-w:checked ~ .hor__panels #p-w,
-    #t-k:checked ~ .hor__panels #p-k{display:block}
+    #t-k:checked ~ .hor__panels #p-k,
+    #t-p:checked ~ .hor__panels #p-p{display:block}
     .hor__panels{max-height:clamp(150px,30vh,300px);overflow-y:auto;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(157,255,50,.3) transparent}
     .hor__date{margin:0 0 8px;font:500 11px/1.4 var(--mono);letter-spacing:.06em;color:var(--lime)}
     .hor__p ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}

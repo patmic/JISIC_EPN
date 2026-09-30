@@ -3,34 +3,41 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FUTURO & TECH — Podcast XIV JISIC</title>
+<title>PLANTILLA — Podcast Road to JISIC</title>
 <link rel="stylesheet" href="../../../css/style.css">
 </head>
 <body>
+<!--
+  PLANTILLA PARA TODOS LOS PODCAST
+  Atributos del <article class="pc">:  data-start = inicio (ISO, Ecuador -05:00) · data-link = enlace al podcast
+  1) Copia esta carpeta como  YYYY_MM_DD_XIV_Podcast_Nombre  (dentro de src/pages/evento/)
+  2) Edita SOLO lo marcado con  ◄  (fecha, enlace, tema, ponente, foto, rol, textos de fecha/hora)
+  3) Agrega el evento en EVENTS de src/js/main.js  (type:"Podcast", page:"<nombre de la carpeta>")
+-->
 <main class="embed">
   <article class="pc"
-           data-start="2026-12-01T00:00:00-05:00"
+           data-start="2026-10-08T13:00:00-05:00"
            data-link="">
     <header class="pc__head">
       <span class="pc__road">Road to <b>JISIC</b> <em>2027</em></span>
       <span class="cat cat--podcast"><i aria-hidden="true"></i>Podcast</span>
     </header>
 
-    <h2 class="pc__theme"><small>Tema</small>“FUTURO &amp; TECH: innovación y tecnologías emergentes”</h2>
+    <h2 class="pc__theme"><small>Tema</small>“Título del podcast”</h2>
 
     <div class="pc__body">
       <figure class="pc__speaker">
-        <div class="pc__photo" role="img" aria-label="Ponente por confirmar"></div>
+        <img class="pc__photo" src="../../../assets/images/podcast/foto_ponente.jpg" alt="Nombre del ponente">
         <figcaption>
-          <p class="pc__name">Ponente por confirmar</p>
-          <p class="pc__role">Se anunciará próximamente</p>
+          <p class="pc__name">Ph.D. Nombre Apellido</p>
+          <p class="pc__role"><b>Docente EPN</b> · Experto en …</p>
         </figcaption>
       </figure>
 
       <div class="pc__side">
         <ul class="pc__info">
-          <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Martes, 1 de diciembre de 2026</li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Hora por confirmar</li>
+          <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Jueves, 8 de octubre de 2026</li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>13h00</li>
           <li><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg>Evento virtual</li>
         </ul>
 

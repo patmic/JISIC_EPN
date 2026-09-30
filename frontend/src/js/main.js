@@ -10,23 +10,35 @@
      ====================================================================== */
   const YEAR = 2026;
   const VENUE = "Teatro Politécnico, edificio 1 · Escuela Politécnica Nacional";
+  /* Categorías (insignias + iconografía; estilos .cat--* en style.css) */
+  const CATS = {
+    conferencia:{ label:"Conferencia", color:"#6ea8ff" },
+    workshop:   { label:"Workshop",    color:"#ffb454" },
+    networking: { label:"Networking",  color:"#ff7ab8" },
+    concurso:   { label:"Concurso",    color:"#ffd84d" },
+    podcast:    { label:"Podcast",     color:"#2fe0c8" }
+  };
+  const catBadge = k => '<span class="cat cat--' + k + '"><i aria-hidden="true"></i>' + CATS[k].label + '</span>';
   const EVENTS = [
-    { date:"2026-06-25", page:"2026_06_25_XIV_IAHumano", type:"Día 2 · Panel y reconocimiento", title:"Inteligencia Artificial con rostro humano",
+    { date:"2026-06-25", page:"2026_06_25_XIV_IAHumano", cats:["conferencia"], type:"Día 2 · Panel y reconocimiento", title:"Inteligencia Artificial con rostro humano",
       venue:VENUE, speaker:"Sang Yoo, Ola Bini, Enrique Mafla, Santiago Lucano y más",
       body:"Charlas sobre comunicación, branding, sociedad y quality engineering en la era de la IA, seguidas del panel \"Inteligencia Artificial con rostro humano: entre la innovación y la responsabilidad\" y la ceremonia de reconocimiento al comité organizador." },
-    { date:"2026-06-26", page:"2026_06_26_XIV_Jornada", type:"Día 3 · Concurso y networking", title:"Concurso de IA, Networking y Premiación",
+    { date:"2026-06-26", page:"2026_06_26_XIV_Jornada", cats:["concurso","networking"], type:"Día 3 · Concurso y networking", title:"Concurso de IA, Networking y Premiación",
       venue:VENUE, speaker:"Comité organizador JISIC",
       body:"Cierre de las jornadas con el Concurso de Inteligencia Artificial (07:30–10:30), un espacio de networking entre asistentes y empresas (10:30–12:30) y la premiación final (12:30–13:30)." },
-    { date:"2026-10-14", page:"2026_10_14_XIV_ConcursoIA", type:"Concurso", title:"Concurso de IA",
+    { date:"2026-10-08", page:"2026_10_08_XIV_Podcast_MiguelFlores", cats:["podcast"], type:"Podcast", title:"¿Cómo aprende realmente una IA?",
+      venue:"Evento virtual", speaker:"Ph.D. Miguel Flores",
+      body:"Road to JISIC 2027 · De los datos a la inteligencia: ¿cómo aprende realmente una IA? Jueves 8 de octubre de 2026, 13h00 (evento virtual)." },
+    { date:"2026-10-14", page:"2026_10_14_XIV_ConcursoIA", cats:["concurso"], type:"Concurso", title:"Concurso de IA",
       venue:"Por confirmar", speaker:"Comité organizador JISIC",
       body:"Competencia abierta a estudiantes y participantes." },
-    { date:"2026-11-14", page:"2026_11_14_XIV_Networking", type:"Networking", title:"Networking",
+    { date:"2026-11-14", page:"2026_11_14_XIV_Networking", cats:["networking"], type:"Networking", title:"Networking",
       venue:"Por confirmar", speaker:"Comité organizador JISIC",
       body:"Espacio de contacto entre asistentes y empresas." },
-    { date:"2026-12-01", page:"2026_12_01_XIV_PodcastTECH", type:"Podcast", title:"FUTURO & TECH",
+    { date:"2026-12-01", page:"2026_12_01_XIV_PodcastTECH", cats:["podcast"], type:"Podcast", title:"FUTURO & TECH",
       venue:"Por confirmar", speaker:"Por confirmar",
       body:"Podcast sobre Innovación y Tecnologías Emergentes." },
-    { date:"2026-12-14", page:"2026_12_14_XIV_Workshop", type:"Workshop", title:"Workshop",
+    { date:"2026-12-14", page:"2026_12_14_XIV_Workshop", cats:["workshop"], type:"Workshop", title:"Workshop",
       venue:"Por confirmar", speaker:"Comité organizador JISIC",
       body:"Taller práctico con cupo limitado." }
   ];
@@ -82,6 +94,7 @@
   const halo     = document.getElementById("halo");
   const stage    = document.getElementById("stage");
   const eyebrow  = document.getElementById("eyebrow");
+  const catsEl   = document.getElementById("cats");
   const whenEl   = document.getElementById("when");
   const titleEl  = document.getElementById("title");
   const bodyEl   = document.getElementById("body");
@@ -127,7 +140,7 @@
   const EV = EVENTS.map(e => {
     const [y,m,d] = e.date.split("-").map(Number);
     const ms = Date.UTC(y, m-1, d);
-    return Object.assign({}, e, { kind:"event", ms, f: fracOf(ms) });
+    return Object.assign({}, e, { kind:"event", ms, f: fracOf(ms), cats: e.cats && e.cats.length ? e.cats : ["conferencia"] });
   }).sort((a,b) => a.ms - b.ms);
 
   /* menu pages, spaced evenly through the prelude range */
@@ -169,7 +182,8 @@
     el.className = "evt";
     el.style.top = (posOf(e.f) * 100) + "%";
     el.innerHTML = '<span class="evt__tip"></span>';
-    el.querySelector(".evt__tip").textContent = flapStr(e.ms) + " · " + e.title;
+    el.querySelector(".evt__tip").textContent = e.cats.map(k => CATS[k].label).join(" + ") + " · " + flapStr(e.ms) + " · " + e.title;
+    el.style.setProperty("--cat", CATS[e.cats[0]].color);
     if (todayIn && e.ms < todayMs) el.classList.add("is-done");
     rail.appendChild(el);
     return el;
@@ -302,6 +316,7 @@
       stage.classList.add("is-embed");
       Promise.all(entry.scripts.map(loadScript)).then(() => {
         if (window.initCarousels) window.initCarousels(pageBox);
+        if (window.initPodcasts) window.initPodcasts(pageBox);
       });
     };
     const dir = item.kind === "home" ? "inicio" : item.kind === "event" ? "evento/" + (item.page || item.date.replace(/-/g, "_") + "_Evento") : item.id;
@@ -333,7 +348,7 @@
   const cdW = document.getElementById("cdWeeks"), cdD = document.getElementById("cdDays"), cdH = document.getElementById("cdHours");
   function updateCountdown(){
     const ev = activeItem && activeItem.kind === "event" ? activeItem : null;
-    if (!ev){ cdBox.hidden = true; return; }
+    if (!ev || ev.type === "Podcast"){ cdBox.hidden = true; return; }  /* los podcast traen su propio cronómetro */
     const [y, m, d] = ev.date.split("-").map(Number);
     const left = new Date(y, m - 1, d).getTime() - Date.now();
     cdBox.hidden = left <= 0;
@@ -357,6 +372,9 @@
     const item = idx >= 0 ? ITEMS[idx] : null;
     if (item === activeItem) return;
     activeItem = item;
+    eyebrow.classList.remove("has-cat");
+    eyebrow.hidden = false;
+    catsEl.hidden = true;
     updateCountdown();
 
     if (!item){
@@ -381,7 +399,9 @@
       const e = item;
       stage.classList.remove("is-idle");
       stage.classList.remove("is-page");
-      eyebrow.textContent = e.type + " · " + flapStr(e.ms);
+      eyebrow.hidden = true;
+      catsEl.innerHTML = e.cats.map(catBadge).join("");
+      catsEl.hidden = false;
       whenEl.textContent = whenLabel(e.ms);
       whenEl.classList.toggle("is-soon", todayIn && e.ms >= todayMs && (e.ms - todayMs) / DAY <= 30);
       titleEl.innerHTML = "<span>" + e.title + "</span>";
@@ -903,7 +923,7 @@
   }
   function inQuery(e){
     if (!query) return true;
-    return norm(e.title + " " + e.type + " " + e.venue + " " + e.speaker + " " + e.body).indexOf(query) >= 0;
+    return norm(e.title + " " + e.type + " " + e.cats.map(k => CATS[k].label).join(" ") + " " + e.venue + " " + e.speaker + " " + e.body).indexOf(query) >= 0;
   }
 
   function refreshFilter(){
