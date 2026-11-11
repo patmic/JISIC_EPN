@@ -1,16 +1,9 @@
 (function(){
   "use strict";
 
-  /* ======================================================================
-     XIII JISIC 2026 — datos reales tomados de jisic.epn.edu.ec
-     Format: { date:"YYYY-MM-DD", type, title, venue, speaker, body, page? }
-     Each event's content lives in src/pages/evento/<page>/index.html
-     (page defaults to YYYY_MM_DD_Evento); the fields here are the
-     timeline label and fallback text.
-     ====================================================================== */
   const YEAR = 2026;
   const VENUE = "Teatro Politécnico, edificio 1 · Escuela Politécnica Nacional";
-  /* Categorías (insignias + iconografía; estilos .cat--* en style.css) */
+
   const CATS = {
     conferencia:{ label:"Conferencia", color:"#6ea8ff" },
     workshop:   { label:"Workshop",    color:"#ffb454" },
@@ -43,9 +36,6 @@
       body:"Taller práctico con cupo limitado." }
   ];
 
-  /* Menu pages, rendered as points at the start of the timeline (before ENE).
-     Each is placed PRELUDE_DAYS/5 apart on a virtual date range before Jan 1.
-     Contenido real tomado de jisic.epn.edu.ec (sección Comité). */
   const PAGES = [
     { id:"comite", title:"Comité",
       body:"La Facultad de Ingeniería de Sistemas de la Escuela Politécnica Nacional organiza las XIII Jornadas JISIC 2026 como un espacio de encuentro entre la academia y la industria, donde estudiantes, docentes, graduados, investigadores, profesionales y empresas comparten experiencias, tendencias y soluciones tecnológicas vinculadas con la Inteligencia Artificial, la innovación y la transformación digital.",
@@ -54,38 +44,17 @@
         ["Comité directivo","PhD. Diana Yacchirema · MSc. Viviana Párraga · MSc. Marcela Saavedra"],
         ["Comunicación","MSc. Gabriela García"],
         ["Web master","MSc. Hernán Ordoñez"]
-      ] },
-    { id:"XI_JISIC", title:"XI JISIC",
-      body:"XI Jornadas JISIC 2024 · Blockchain como tecnología habilitadora de la transformación digital. 29, 30 y 31 de mayo de 2024, Auditorio 2, EARME edificio 26 – Escuela Politécnica Nacional.",
-      meta:[
-        ["Coordinador","Andrés Larco, PhD."]
-      ] },
-    { id:"XII_JISIC", title:"XII JISIC",
-      body:"XII Jornadas JISIC 2025 · Reinventando el futuro digital. 28, 29 y 30 de octubre de 2025, Teatro Politécnico, edificio 1 – Escuela Politécnica Nacional.",
-      meta:[
-        ["Organizador","Jairo Quishpe · Presidente AEIS"]
-      ] },
-    { id:"XIII_JISIC", title:"XIII JISIC",
-      body:"XIII Jornadas JISIC 2026 · La IA transformando el mundo. 24, 25 y 26 de junio de 2026, Teatro Politécnico, edificio 1 – Escuela Politécnica Nacional.",
-      meta:[
-        ["Coordinador","PhD. Andrés Larco"]
-      ] },
-    { id:"XIV_JISIC", title:"XIV JISIC",
-      body:"XIV Jornadas JISIC · nueva temporada de octubre de 2026 a diciembre de 2027. Concurso de IA, networking, workshops y conferencias.",
-      meta:[
-        ["Temporada","Octubre 2026 – diciembre 2027"]
       ] }
   ];
-  const HOME = { id:"home", title:"XIII JISIC 2026",
-    body:"La IA transformando el mundo. Las Jornadas de Ingeniería de Sistemas Informáticos y de Computación son el espacio de encuentro entre la academia y la industria de la Facultad de Ingeniería de Sistemas (EPN).",
+  const HOME = { id:"home", title:"XIV JISIC",
+    body:"XIV Jornadas JISIC · nueva temporada de octubre de 2026 a diciembre de 2027. Concurso de IA, networking, workshops, conferencias y podcast.",
     meta:[
-      ["Fecha","24, 25 y 26 de junio de 2026"],
+      ["Temporada","Octubre 2026 – diciembre 2027"],
       ["Sede",VENUE]
     ] };
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ================== refs ================== */
   const section  = document.getElementById("ascent");
   const spine    = document.getElementById("spine");
   const rail     = document.getElementById("spineRail");
@@ -107,10 +76,6 @@
   const nctx     = neuro.getContext("2d");
   const SVGNS    = "http://www.w3.org/2000/svg";
 
-  /* ================== time scale ==================
-     The timeline is extended backwards before Jan 1 to make room for the
-     menu pages (rendered as points at the start of the spine). EY0 is the
-     virtual start; real agenda dates still live between Y0 and Y1. */
   const DAY = 86400000;
   const PRELUDE_DAYS = 120;
   const Y0  = Date.UTC(YEAR, 0, 1);
@@ -143,7 +108,6 @@
     return Object.assign({}, e, { kind:"event", ms, f: fracOf(ms), cats: e.cats && e.cats.length ? e.cats : ["conferencia"] });
   }).sort((a,b) => a.ms - b.ms);
 
-  /* menu pages, spaced evenly through the prelude range */
   const pageSpacing = PRELUDE_DAYS / (PAGES.length + 1);
   const PAGE_ITEMS = PAGES.map((p, i) => {
     const ms = EY0 + Math.round((i + 1) * pageSpacing) * DAY;
@@ -153,7 +117,6 @@
 
   const ITEMS = [HOME_ITEM].concat(PAGE_ITEMS, EV).sort((a,b) => a.ms - b.ms);
 
-  /* ================== spine: months, ticks, events ================== */
   const P0 = 0.06, P1 = 0.94;
   const HOLD = 0.94;
   const posOf = f => P0 + f * (P1 - P0);
@@ -213,7 +176,6 @@
     rail.appendChild(th);
   }
 
-  /* ================== split-flap ================== */
   let currentStr = "";
   const slots = [];
 
@@ -269,7 +231,6 @@
     currentStr = str;
   }
 
-  /* ================== stage card (events + menu pages) ================== */
   const NEAR_DAYS = 12;
   let activeItem = undefined;
 
@@ -298,66 +259,26 @@
     return -1;
   }
 
-  /* src/pages/<id>/index.html is fetched and embedded in the stage; the JS
-     copy of the text is the fallback (e.g. when opened from file://). */
   const pageBox = document.getElementById("pageBox");
-  const pageCache = {};
   function embedPage(item){
-    stage.classList.remove("is-embed");
-    pageBox.hidden = true;
-    const show = entry => {
-      if (activeItem !== item) return;
-      pageBox.innerHTML = entry.html;
-      pageBox.dataset.base = entry.base;
-      pageBox.querySelectorAll("img[src]").forEach(im => {
-        im.src = new URL(im.getAttribute("src"), entry.base).href;
-      });
-      pageBox.hidden = false;
-      stage.classList.add("is-embed");
-      Promise.all(entry.scripts.map(loadScript)).then(() => {
-        if (window.initCarousels) window.initCarousels(pageBox);
-        if (window.initPodcasts) window.initPodcasts(pageBox);
-      });
-    };
     const dir = item.kind === "home" ? "inicio" : item.kind === "event" ? "evento/" + (item.page || item.date.replace(/-/g, "_") + "_Evento") : item.id;
-    if (pageCache[dir]) return show(pageCache[dir]);
-    const url = new URL("./src/pages/" + dir + "/index.html", location.href);
-    const store = (html) => {
-      const m = new DOMParser().parseFromString("<main>" + html + "</main>", "text/html").querySelector("main");
-      const scripts = [].map.call(m.querySelectorAll("script[src]"), s => new URL(s.getAttribute("src"), url).href);
-      pageCache[dir] = { html: html, scripts, base: url.href };
-      show(pageCache[dir]);
-    };
-    /* file:// bloquea fetch(): se usa la copia de src/js/pages-embed.js */
-    const offline = () => { if (window.__PAGES && window.__PAGES[dir] != null) store(window.__PAGES[dir]); };
-    if (location.protocol === "file:") return offline();
-    fetch(url)
-      .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
-      .then(t => {
-        const m = new DOMParser().parseFromString(t, "text/html").querySelector("main");
-        if (!m) return;
-        const scripts = [].map.call(m.querySelectorAll("script[src]"), s => new URL(s.getAttribute("src"), url).href);
-        pageCache[dir] = { html: m.innerHTML, scripts, base: url.href };
-        show(pageCache[dir]);
-      })
-      .catch(offline);
+    stage.classList.add("is-embed");
+    pageBox.hidden = false;
+    if (pageBox.dataset.dir === dir) return;
+    pageBox.dataset.dir = dir;
+    pageBox.textContent = "";
+    const f = document.createElement("iframe");
+    f.className = "page-frame";
+    f.title = item.title;
+    f.src = "./src/pages/" + dir + "/index.html";
+    pageBox.appendChild(f);
   }
 
-  const scriptLoads = {};
-  function loadScript(src){
-    return scriptLoads[src] || (scriptLoads[src] = new Promise(res => {
-      const s = document.createElement("script");
-      s.src = src; s.onload = s.onerror = res;
-      document.head.appendChild(s);
-    }));
-  }
-
-  /* countdown (weeks / days / hours) to the event on stage */
   const cdBox = document.getElementById("countdown");
   const cdW = document.getElementById("cdWeeks"), cdD = document.getElementById("cdDays"), cdH = document.getElementById("cdHours");
   function updateCountdown(){
     const ev = activeItem && activeItem.kind === "event" ? activeItem : null;
-    if (!ev || ev.type === "Podcast"){ cdBox.hidden = true; return; }  /* los podcast traen su propio cronómetro */
+    if (!ev || ev.type === "Podcast"){ cdBox.hidden = true; return; }
     const [y, m, d] = ev.date.split("-").map(Number);
     const left = new Date(y, m - 1, d).getTime() - Date.now();
     cdBox.hidden = left <= 0;
@@ -425,7 +346,8 @@
     } else {
       stage.classList.remove("is-idle");
       stage.classList.add("is-page");
-      eyebrow.textContent = item.kind === "home" ? "Inicio" : "Página · " + item.title;
+      eyebrow.hidden = item.kind === "home";
+      eyebrow.textContent = item.kind === "home" ? "" : "Página · " + item.title;
       whenEl.textContent = "";
       whenEl.classList.remove("is-soon");
       titleEl.innerHTML = "<span>" + item.title + "</span>";
@@ -448,7 +370,6 @@
     }
   }
 
-  /* ================== canvas: pixel bloom background ================== */
   const STEPS = 40;
   const PAL_LIME = [], PAL_CREST = [], PAL_WARM = [];
   for (let i = 0; i <= STEPS; i++){
@@ -509,7 +430,6 @@
     }
   }
 
-  /* ================== canvas: neural brain (right side) ================== */
   const BRAIN_D = "M104,14 C132,8 160,18 174,40 C188,62 190,76 184,88 " +
                   "C179,98 170,101 163,103 C171,112 167,124 153,128 " +
                   "C143,131 135,128 129,133 C119,141 104,143 93,137 " +
@@ -846,7 +766,6 @@
     nctx.restore();
   }
 
-  /* ================== navigation ================== */
   function scrollTotal(){ return Math.max(1, section.offsetHeight - window.innerHeight); }
   function sectionTop(){ return section.offsetTop; }
 
@@ -916,7 +835,6 @@
     if (handled) e.preventDefault();
   });
 
-  /* ================== filter + search ================== */
   const modeBtns = Array.prototype.slice.call(document.querySelectorAll(".segmented__item"));
   const qInput   = document.getElementById("agenda-query");
   const hintEl   = document.getElementById("agenda-hint");
@@ -1004,7 +922,6 @@
     goTo(todayIn ? todayF : 0, true);
   });
 
-  /* ================== loop ================== */
   let rafId = null;
 
   function frame(time){
@@ -1039,7 +956,6 @@
     rafId = requestAnimationFrame(frame);
   }
 
-  /* ================== init ================== */
   function resize(){
     buildGrid();
     placeBrain();
@@ -1062,7 +978,6 @@
     });
   }, {rootMargin:"120px"});
 
-  /* ================== menu navigation ================== */
   function nextUpcomingEvent(){
     for (let i = 0; i < EV.length; i++) if (EV[i].ms >= todayMs) return EV[i];
     return EV[EV.length - 1];
@@ -1080,6 +995,30 @@
     });
   });
 
+  window.addEventListener("message", (e) => {
+    const key = e.data && e.data.go;
+    if (typeof key !== "string") return;
+    let item;
+    if (key === "evento") item = nextUpcomingEvent();
+    else if (key === "comite") item = PAGE_ITEMS.filter(p => p.id === key)[0];
+    else {
+      const cats = key.split(",");
+      const pool = EV.filter(x => x.cats.some(c => cats.indexOf(c) >= 0));
+      item = pool.filter(x => x.ms >= todayMs)[0] || pool[0];
+    }
+    if (item) goTo(item.f, true);
+  });
+
+  const dropBtn = document.getElementById("dropBtn"), dropMenu = document.getElementById("dropMenu");
+  function setDrop(open){
+    dropMenu.hidden = !open;
+    dropBtn.setAttribute("aria-expanded", String(open));
+  }
+  dropBtn.addEventListener("click", (e) => { e.stopPropagation(); setDrop(dropMenu.hidden); });
+  dropMenu.addEventListener("click", () => setDrop(false));
+  document.addEventListener("click", () => setDrop(false));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !dropMenu.hidden) { setDrop(false); dropBtn.focus(); } });
+
   spine.setAttribute("aria-valuemin", "1");
   spine.setAttribute("aria-valuemax", String(PRELUDE_DAYS + 365));
 
@@ -1092,3 +1031,4 @@
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   requestAnimationFrame(() => goTo(todayIn ? todayF : 0, false));
 })();
+

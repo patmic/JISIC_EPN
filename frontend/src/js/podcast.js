@@ -1,8 +1,3 @@
-/* Podcast JISIC — cronómetro + enlace (plantilla compartida por todos los podcast)
-   Cada <article class="pc"> usa:
-     data-start="2026-10-08T13:00:00-05:00"   inicio del evento (ISO con zona horaria)
-     data-link="https://…"                     enlace al podcast (vacío = "próximamente")
-     data-duration="120"                       minutos que dura "en vivo" (opcional, def. 120) */
 (function(){
   "use strict";
   var p2 = function(n){ return String(n).padStart(2, "0"); };
@@ -59,3 +54,4 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function(){ window.initPodcasts(); });
   else window.initPodcasts();
 })();
+

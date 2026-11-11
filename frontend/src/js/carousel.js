@@ -1,6 +1,3 @@
-/* Arc carousel (adapted from carrusel-arco.html).
-   Usage: <div data-carousel> with a <script type="application/json" class="carousel-data">[{name,role,img,hue}]; img is a path relative to the page folder (e.g. "comite/3_patmic.png"; a leading "/" is ignored)</script>.
-   window.initCarousels(root) can be called again after injecting markup. */
 (function(){
   "use strict";
 
@@ -31,7 +28,6 @@
 
     const stage = root.querySelector(".tc-stage"), track = root.querySelector(".tc-track");
     const dotsEl = root.querySelector(".tc-dots"), nameEl = root.querySelector(".tc-name"), roleEl = root.querySelector(".tc-role");
-    
 
     let pos = 0, target = 0, active = -1;
     let dragging = false, moved = false, startX = 0, startPos = 0, lastX = 0, lastT = 0, vel = 0;
@@ -142,3 +138,4 @@
   };
   window.initCarousels(document);
 })();
+
