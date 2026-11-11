@@ -1,7 +1,6 @@
 (function(){
   "use strict";
 
-  const YEAR = 2026;
   const VENUE = "Teatro Politécnico, edificio 1 · Escuela Politécnica Nacional";
 
   const CATS = {
@@ -78,8 +77,8 @@
 
   const DAY = 86400000;
   const PRELUDE_DAYS = 120;
-  const Y0  = Date.UTC(YEAR, 0, 1);
-  const Y1  = Date.UTC(YEAR, 11, 31);
+  const Y0  = Date.UTC(2026, 5, 1);
+  const Y1  = Date.UTC(2027, 5, 30);
   const EY0 = Y0 - PRELUDE_DAYS * DAY;
   const SPAN = Y1 - EY0;
   const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
@@ -122,13 +121,15 @@
   const posOf = f => P0 + f * (P1 - P0);
 
   const monthEls = [], monthF = [];
-  for (let m = 0; m < 12; m++){
-    const f = fracOf(Date.UTC(YEAR, m, 1));
+  const NMONTHS = 13;
+  for (let m = 0; m < NMONTHS; m++){
+    const mi = (5 + m) % 12, yr = 2026 + Math.floor((5 + m) / 12);
+    const f = fracOf(Date.UTC(2026, 5 + m, 1));
     monthF.push(f);
 
     const el = document.createElement("div");
     el.className = "month";
-    el.textContent = m === 0 ? (YEAR + " - " + MN[m]) : MN[m];
+    el.textContent = (m === 0 || mi === 0) ? (yr + " - " + MN[mi]) : MN[mi];
     el.style.top = (posOf(f) * 100) + "%";
     rail.appendChild(el);
     monthEls.push(el);
@@ -322,7 +323,7 @@
         ? (nxItem.kind === "event"
             ? "Arrastra el nodo hasta el rombo de " + longStr(nxItem.ms) + " para abrir la ficha."
             : "Sigue arrastrando el nodo hasta el punto de " + nxItem.title + ".")
-        : "No quedan eventos programados en " + YEAR + ".") + "</span>";
+        : "No quedan eventos programados en este período.") + "</span>";
       metaEl.innerHTML = "";
       setNavCurrent(null);
     } else if (item.kind === "event"){
@@ -346,8 +347,8 @@
     } else {
       stage.classList.remove("is-idle");
       stage.classList.add("is-page");
-      eyebrow.hidden = item.kind === "home";
-      eyebrow.textContent = item.kind === "home" ? "" : "Página · " + item.title;
+      eyebrow.hidden = true;
+      eyebrow.textContent = "";
       whenEl.textContent = "";
       whenEl.classList.remove("is-soon");
       titleEl.innerHTML = "<span>" + item.title + "</span>";
@@ -838,7 +839,7 @@
   const modeBtns = Array.prototype.slice.call(document.querySelectorAll(".segmented__item"));
   const qInput   = document.getElementById("agenda-query");
   const hintEl   = document.getElementById("agenda-hint");
-  const MODE_LABEL = { all:"todo el año", next:"próximos", past:"realizados" };
+  const MODE_LABEL = { all:"toda la temporada", next:"próximos", past:"realizados" };
 
   let mode = "all", query = "", matchIdx = [];
 
@@ -934,7 +935,7 @@
     fill.style.height = (pos * 100) + "%";
     railFill.style.height = (f * 100) + "%";
 
-    for (let m = 0; m < 12; m++){
+    for (let m = 0; m < monthEls.length; m++){
       const d = Math.abs(monthF[m] - f);
       const past = monthF[m] <= f + 0.002;
       monthEls[m].classList.toggle("is-active", d < 0.035);
@@ -1020,7 +1021,7 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !dropMenu.hidden) { setDrop(false); dropBtn.focus(); } });
 
   spine.setAttribute("aria-valuemin", "1");
-  spine.setAttribute("aria-valuemax", String(PRELUDE_DAYS + 365));
+  spine.setAttribute("aria-valuemax", String(Math.round((Y1 - EY0) / DAY) + 1));
 
   resize();
   buildBrain();
