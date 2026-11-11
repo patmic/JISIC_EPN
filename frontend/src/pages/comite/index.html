@@ -40,8 +40,8 @@
   <style>
     .team-info{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px clamp(18px,3vw,42px)}
     .team-info li{padding-left:12px;border-left:2px solid #4fd3e6;text-align:left}
-    .team-info b{display:block;font:700 clamp(11px,1vw,14px) var(--font);letter-spacing:.04em;text-transform:uppercase;color:#4fd3e6}
-    .team-info span{display:block;margin-top:2px;font:400 clamp(11px,1vw,14px)/1.4 var(--font);color:var(--ink-dim)}
+    .team-info b{display:block;font:700 clamp(13px,1vw,16px) var(--font);letter-spacing:.04em;text-transform:uppercase;color:#4fd3e6}
+    .team-info span{display:block;margin-top:2px;font:400 clamp(13px,1vw,16px)/1.4 var(--font);color:var(--ink-dim)}
     .team-carousel{--cw:clamp(96px,10vw,150px);--ch:calc(var(--cw)*1.32);margin-top:6px;max-width:none}
     .tc-stage{position:relative;height:calc(var(--ch) + 24px);perspective:900px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;outline:none}
     .tc-stage.dragging{cursor:grabbing}
@@ -49,15 +49,15 @@
     .tc-track{position:absolute;inset:0;transform-style:preserve-3d}
     .tc-card{position:absolute;left:50%;top:50%;width:var(--cw);height:var(--ch);margin:calc(var(--ch)/-2) 0 0 calc(var(--cw)/-2);border-radius:12px;overflow:hidden;border:1px solid rgba(157,255,50,.22);box-shadow:0 14px 30px -14px rgba(0,0,0,.8);backface-visibility:hidden;will-change:transform;background:#0b0d0a}
     .tc-card img,.tc-art{width:100%;height:100%;object-fit:cover;display:grid;place-items:center;pointer-events:none}
-    .tc-art b{font:600 clamp(22px,3vw,32px) var(--font);color:rgba(244,246,241,.9);letter-spacing:-.02em}
-    .tc-num{position:absolute;top:8px;left:10px;font:500 9px var(--mono);letter-spacing:.14em;color:rgba(255,255,255,.7)}
+    .tc-art b{font:600 clamp(24px,3vw,34px) var(--font);color:rgba(244,246,241,.9);letter-spacing:-.02em}
+    .tc-num{position:absolute;top:8px;left:10px;font:500 11px var(--mono);letter-spacing:.14em;color:rgba(255,255,255,.7)}
     .tc-foot{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:6px}
     .tc-nav{display:flex;align-items:center;justify-content:center;gap:14px}
-    .tc-count{font:500 11px var(--mono);letter-spacing:.14em;color:var(--ink-faint)}
+    .tc-count{font:500 13px var(--mono);letter-spacing:.14em;color:var(--ink-faint)}
     .tc-cur{color:var(--lime)}
     .tc-info{text-align:center;min-width:0}
-    .tc-name{margin:0;font:500 clamp(17px,1.7vw,23px)/1.15 var(--font);letter-spacing:-.01em;color:var(--ink);transition:opacity .2s}
-    .tc-role{margin:4px 0 0;font:500 clamp(13px,1.3vw,17px) var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
+    .tc-name{margin:0;font:500 clamp(19px,1.7vw,25px)/1.15 var(--font);letter-spacing:-.01em;color:var(--ink);transition:opacity .2s}
+    .tc-role{margin:4px 0 0;font:500 clamp(15px,1.3vw,19px) var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
     .tc-dots{display:flex;gap:6px;justify-content:center;margin-top:8px}
     .tc-dots button{width:6px;height:6px;border-radius:99px;border:0;padding:0;background:rgba(255,255,255,.2);cursor:pointer;transition:width .3s,background .3s}
     .tc-dots button.active{width:18px;background:var(--lime)}

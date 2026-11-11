@@ -322,6 +322,15 @@
     const dir = item.kind === "home" ? "inicio" : item.kind === "event" ? "evento/" + (item.page || item.date.replace(/-/g, "_") + "_Evento") : item.id;
     if (pageCache[dir]) return show(pageCache[dir]);
     const url = new URL("./src/pages/" + dir + "/index.html", location.href);
+    const store = (html) => {
+      const m = new DOMParser().parseFromString("<main>" + html + "</main>", "text/html").querySelector("main");
+      const scripts = [].map.call(m.querySelectorAll("script[src]"), s => new URL(s.getAttribute("src"), url).href);
+      pageCache[dir] = { html: html, scripts, base: url.href };
+      show(pageCache[dir]);
+    };
+    /* file:// bloquea fetch(): se usa la copia de src/js/pages-embed.js */
+    const offline = () => { if (window.__PAGES && window.__PAGES[dir] != null) store(window.__PAGES[dir]); };
+    if (location.protocol === "file:") return offline();
     fetch(url)
       .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(t => {
@@ -331,7 +340,7 @@
         pageCache[dir] = { html: m.innerHTML, scripts, base: url.href };
         show(pageCache[dir]);
       })
-      .catch(() => {});
+      .catch(offline);
   }
 
   const scriptLoads = {};
