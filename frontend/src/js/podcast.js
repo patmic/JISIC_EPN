@@ -41,7 +41,8 @@
         label.textContent = state === "live" ? "¡En vivo ahora!" : "Evento finalizado";
       }
       if (timer) timer.classList.toggle("is-over", state !== "soon");
-      if (ctaTxt && link) ctaTxt.textContent = state === "live" ? "Unirse ahora" : state === "done" ? "Ver el podcast" : "Ir al podcast";
+      var isPod = !!el.querySelector(".cat--podcast");
+      if (ctaTxt && link) ctaTxt.textContent = state === "live" ? "Unirse ahora" : state === "done" ? (isPod ? "Ver el podcast" : "Ver la transmisión") : (isPod ? "Ir al podcast" : "Ir a la transmisión");
       else if (ctaTxt) ctaTxt.textContent = "Enlace próximamente";
     }
     render();

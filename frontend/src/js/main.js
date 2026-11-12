@@ -12,27 +12,33 @@
   };
   const catBadge = k => '<span class="cat cat--' + k + '"><i aria-hidden="true"></i>' + CATS[k].label + '</span>';
   const EVENTS = [
-    { date:"2026-06-25", page:"2026_06_25_XIV_IAHumano", cats:["conferencia"], type:"Día 2 · Panel y reconocimiento", title:"Inteligencia Artificial con rostro humano",
-      venue:VENUE, speaker:"Sang Yoo, Ola Bini, Enrique Mafla, Santiago Lucano y más",
-      body:"Charlas sobre comunicación, branding, sociedad y quality engineering en la era de la IA, seguidas del panel \"Inteligencia Artificial con rostro humano: entre la innovación y la responsabilidad\" y la ceremonia de reconocimiento al comité organizador." },
-    { date:"2026-06-26", page:"2026_06_26_XIV_Jornada", cats:["concurso","networking"], type:"Día 3 · Concurso y networking", title:"Concurso de IA, Networking y Premiación",
-      venue:VENUE, speaker:"Comité organizador JISIC",
-      body:"Cierre de las jornadas con el Concurso de Inteligencia Artificial (07:30–10:30), un espacio de networking entre asistentes y empresas (10:30–12:30) y la premiación final (12:30–13:30)." },
+    { date:"2026-06-04", page:"2026_06_04_XIII_Road_IANegocios", cats:["conferencia"], type:"Road to JISIC 2026", title:"El impacto de la IA en los negocios",
+      venue:"Aula Inteligente, piso 5, Edificio 20 · EPN (y en vivo)", speaker:"Ernesto Kruger",
+      body:"Road to JISIC 2026 · El impacto de la IA en los negocios. Jueves, 4 de junio de 2026, 12h00 – 13h00 (transmisión en vivo por las redes de la FIS)." },
+    { date:"2026-06-11", page:"2026_06_11_XIII_Road_IANegocios", cats:["conferencia"], type:"Road to JISIC 2026", title:"El impacto de la IA en los negocios",
+      venue:"Evento virtual", speaker:"Ernesto Kruger",
+      body:"Road to JISIC 2026 · El impacto de la IA en los negocios. Jueves, 11 de junio de 2026 (transmisión en vivo por las redes de la FIS)." },
+    { date:"2026-06-17", page:"2026_06_17_XIII_Road_IANegocios", cats:["conferencia"], type:"Road to JISIC 2026", title:"El impacto de la IA en los negocios",
+      venue:"Evento virtual", speaker:"Ernesto Kruger",
+      body:"Road to JISIC 2026 · El impacto de la IA en los negocios. Miércoles, 17 de junio de 2026 (transmisión en vivo por las redes de la FIS)." },
+    { date:"2026-06-18", page:"2026_06_18_XIII_Road_IAMarketing", cats:["conferencia"], type:"Road to JISIC 2026", title:"IA en el Marketing y la Comunicación",
+      venue:"Evento virtual", speaker:"Diego Logroño, Mario Argote",
+      body:"Road to JISIC 2026 · IA en el Marketing y la Comunicación. Jueves, 18 de junio de 2026, 12h00 (transmisión en vivo por las redes de la FIS)." },
     { date:"2026-10-08", page:"2026_10_08_XIV_Podcast_MiguelFlores", cats:["podcast"], type:"Podcast", title:"¿Cómo aprende realmente una IA?",
       venue:"Evento virtual", speaker:"Ph.D. Miguel Flores",
       body:"Road to JISIC 2027 · De los datos a la inteligencia: ¿cómo aprende realmente una IA? Jueves 8 de octubre de 2026, 13h00 (evento virtual)." },
     { date:"2026-10-14", page:"2026_10_14_XIV_ConcursoIA", cats:["concurso"], type:"Concurso", title:"Concurso de IA",
       venue:"Por confirmar", speaker:"Comité organizador JISIC",
       body:"Competencia abierta a estudiantes y participantes." },
+    { date:"2026-11-12", page:"2026_11_12_XIV_Podcast_SoniaCardenas", cats:["podcast"], type:"Podcast", title:"¿Magia o Matemáticas? Ctrl-Z a los mitos de la IA",
+      venue:"Evento virtual", speaker:"Ph.D. Sonia Cárdenas Delgado",
+      body:"Road to JISIC 2027 · ¿Magia o Matemáticas? Ctrl-Z a los mitos de la IA. Jueves, 12 de noviembre de 2026, 12h00 (transmisión en vivo por las redes de la FIS)." },
     { date:"2026-11-14", page:"2026_11_14_XIV_Networking", cats:["networking"], type:"Networking", title:"Networking",
       venue:"Por confirmar", speaker:"Comité organizador JISIC",
       body:"Espacio de contacto entre asistentes y empresas." },
     { date:"2026-12-01", page:"2026_12_01_XIV_PodcastTECH", cats:["podcast"], type:"Podcast", title:"FUTURO & TECH",
       venue:"Por confirmar", speaker:"Por confirmar",
-      body:"Podcast sobre Innovación y Tecnologías Emergentes." },
-    { date:"2026-12-14", page:"2026_12_14_XIV_Workshop", cats:["workshop"], type:"Workshop", title:"Workshop",
-      venue:"Por confirmar", speaker:"Comité organizador JISIC",
-      body:"Taller práctico con cupo limitado." }
+      body:"Podcast sobre Innovación y Tecnologías Emergentes." }
   ];
 
   const PAGES = [
