@@ -1036,6 +1036,10 @@
   io.observe(section);
 
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  requestAnimationFrame(() => goTo(todayIn ? todayF : 0, false));
+  /* Página de llegada: al abrir el sitio se muestra el Concurso de IA.
+     Para cambiarla, pon aquí el "page" de otro evento (o "" para volver a "Hoy"). */
+  const LANDING_PAGE = "2026_10_14_XIV_ConcursoIA";
+  const landing = EV.filter(e => e.page === LANDING_PAGE)[0];
+  requestAnimationFrame(() => goTo(landing ? landing.f : (todayIn ? todayF : 0), false));
 })();
 
