@@ -28,8 +28,8 @@
       venue:"Evento virtual", speaker:"Ph.D. Miguel Flores",
       body:"Road to JISIC 2027 · De los datos a la inteligencia: ¿cómo aprende realmente una IA? Jueves 8 de octubre de 2026, 13h00 (evento virtual)." },
     { date:"2026-10-14", page:"2026_10_14_XIV_ConcursoIA", cats:["concurso"], type:"Concurso", title:"Concurso de IA",
-      venue:"Por confirmar", speaker:"Comité organizador JISIC",
-      body:"Competencia abierta a estudiantes y participantes." },
+      venue:"Salas de cómputo JISIC", speaker:"Comité organizador JISIC",
+      body:"Concurso Ingenio Artificial: equipos de 3 estudiantes resuelven un desafío de visión por computador con redes neuronales profundas." },
     { date:"2026-11-12", page:"2026_11_12_XIV_Podcast_SoniaCardenas", cats:["podcast"], type:"Podcast", title:"¿Magia o Matemáticas? Ctrl-Z a los mitos de la IA",
       venue:"Evento virtual", speaker:"Ph.D. Sonia Cárdenas Delgado",
       body:"Road to JISIC 2027 · ¿Magia o Matemáticas? Ctrl-Z a los mitos de la IA. Jueves, 12 de noviembre de 2026, 12h00 (transmisión en vivo por las redes de la FIS)." },
@@ -285,7 +285,7 @@
   const cdW = document.getElementById("cdWeeks"), cdD = document.getElementById("cdDays"), cdH = document.getElementById("cdHours");
   function updateCountdown(){
     const ev = activeItem && activeItem.kind === "event" ? activeItem : null;
-    if (!ev || ev.type === "Podcast"){ cdBox.hidden = true; return; }
+    if (!ev || ev.type === "Podcast" || ev.type === "Concurso"){ cdBox.hidden = true; return; }  /* traen su propia ficha con cronómetro */
     const [y, m, d] = ev.date.split("-").map(Number);
     const left = new Date(y, m - 1, d).getTime() - Date.now();
     cdBox.hidden = left <= 0;

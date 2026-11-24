@@ -43,7 +43,7 @@
       if (timer) timer.classList.toggle("is-over", state !== "soon");
       var isPod = !!el.querySelector(".cat--podcast");
       if (ctaTxt && link) ctaTxt.textContent = state === "live" ? "Unirse ahora" : state === "done" ? (isPod ? "Ver el podcast" : "Ver la transmisión") : (isPod ? "Ir al podcast" : "Ir a la transmisión");
-      else if (ctaTxt) ctaTxt.textContent = "Enlace próximamente";
+      else if (ctaTxt) ctaTxt.textContent = el.dataset.ctaEmpty || "Enlace próximamente";
     }
     render();
     el.__pcTimer = setInterval(render, 1000);

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Concurso de IA">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#3a3413"/>
+      <stop offset="1" stop-color="#0d0f0a"/>
+    </radialGradient>
+  </defs>
+  <rect width="200" height="200" fill="url(#bg)"/>
+  <g fill="none" stroke="#ffd84d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M70 48h60v38a30 30 0 0 1-60 0z"/>
+    <path d="M70 58H50v6a22 22 0 0 0 22 22M130 58h20v6a22 22 0 0 1-22 22"/>
+    <path d="M100 116v22M80 140h40M74 156h52"/>
+  </g>
+  <g fill="#9dff32">
+    <circle cx="90" cy="70" r="5"/><circle cx="110" cy="62" r="5"/><circle cx="108" cy="84" r="5"/>
+  </g>
+  <path d="M90 70 110 62M90 70l18 14M110 62l-2 22" stroke="#9dff32" stroke-width="3" stroke-linecap="round"/>
+</svg>
